@@ -5,6 +5,7 @@ var server_port = "4242"
 var connected = false
 var peer = ENetMultiplayerPeer.new()
 var player_name: String = "John Doe"
+var is_in_minigame: bool = false
 
 func _ready():
 	load_saved_config()
@@ -59,6 +60,9 @@ func _on_server_disconnected():
 
 func _physics_process(delta):
 	if not connected:
+		return
+	
+	if is_in_minigame:
 		return
 	
 	var gyro = Input.get_gyroscope()

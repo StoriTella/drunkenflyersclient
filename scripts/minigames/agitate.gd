@@ -1,8 +1,8 @@
 extends Control
 
 @export var shake_threshold: float = 5.0
-@export var required_shakes: int = 2
-@export var shake_timeout: float = 2.0
+@export var required_shakes: int = 20
+@export var shake_timeout: float = 0.5
 
 @onready var timer: Timer = $Timer
 @onready var progress_bar = $ProgressBar
@@ -14,6 +14,7 @@ var last_accel: Vector3 = Vector3.ZERO
 var is_complete: bool = false
 
 func _ready():
+	Minigames.is_in_minigame(true)
 	last_accel = Input.get_accelerometer()
 	progress_bar.max_value = required_shakes
 	progress_bar.value = 0

@@ -17,6 +17,7 @@ func _ready():
 	start_minigame()
 
 func start_minigame():
+	Minigames.is_in_minigame(true)
 	clear_buttons()
 	total_buttons = randi_range(min_buttons, max_buttons)
 	buttons_clicked = 0
