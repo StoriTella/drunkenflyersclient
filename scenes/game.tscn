@@ -49,30 +49,34 @@ layout_mode = 2
 theme = ExtResource("2_yqjtg")
 text = "Controls"
 
-[node name="ForwardButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=897129798]
+[node name="UpButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=897129798]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
-text = "Forward"
+disabled = true
+text = "Up"
 
-[node name="BackButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=315603036]
+[node name="DownButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=315603036]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
-text = "Back
-"
+disabled = true
+text = "Down"
 
 [node name="LeftButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=1778444702]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
+disabled = true
 text = "Left"
 
 [node name="RightButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=647054652]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
+disabled = true
 text = "Right"
 
 [node name="CoreButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=1546187311]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
+disabled = true
 text = "Core"
 
 [node name="VBoxContainerPowerUps" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=138200139]
@@ -127,7 +131,11 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Disconnect"
 
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/ForwardButton" to="." method="_on_forward_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/CoreButton" to="." method="_on_core_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton" to="." method="_on_shield_button_pressed"]
 [connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton/ShieldTimer" to="." method="_on_shield_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton" to="." method="_on_speed_button_pressed"]

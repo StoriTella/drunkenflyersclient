@@ -131,6 +131,10 @@ func add_speed_powerup():
 func add_shield_powerup():
 	pass
 
+@rpc("any_peer", "call_remote", "unreliable")
+func nuclear_missile_powerup():
+	pass
+
 func play_random_sound(sound: AudioStream, pitch_min: float, pitch_max: float, speed_min: float, speed_max: float):
 	var player = AudioStreamPlayer2D.new()
 	
@@ -143,3 +147,70 @@ func play_random_sound(sound: AudioStream, pitch_min: float, pitch_max: float, s
 	
 	await get_tree().create_timer(player.stream.get_length() / player.pitch_scale).timeout
 	player.queue_free()
+
+
+#system movement and core
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_left():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_right():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_up():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_down():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_core():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_left():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_right():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_up():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_down():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_core():
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_left_enabled(enabled: bool):
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_left_enabled_button(enabled)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_right_enabled(enabled: bool):
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_right_enabled_button(enabled)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_up_enabled(enabled: bool):
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_up_enabled_button(enabled)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_down_enabled(enabled: bool):
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_down_enabled_button(enabled)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_core_enabled(enabled: bool):
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_core_enabled_button(enabled)
