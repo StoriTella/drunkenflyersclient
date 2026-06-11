@@ -46,11 +46,7 @@ func _on_button_pressed(button: Button):
 	buttons_clicked += 1
 	
 	if buttons_clicked >= total_buttons:
-		complete_minigame(true)
-
-func complete_minigame(is_win: bool):
-	await get_tree().create_timer(0.5).timeout
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+		Minigames.complete_minigame(true)
 
 func clear_buttons():
 	for child in get_children():
@@ -59,4 +55,4 @@ func clear_buttons():
 
 
 func _on_timer_timeout() -> void:
-	complete_minigame(false)
+	Minigames.complete_minigame(false)

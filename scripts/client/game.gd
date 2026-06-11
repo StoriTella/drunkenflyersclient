@@ -18,4 +18,11 @@ func _on_disconnect_pressed() -> void:
 
 
 func _on_forward_button_pressed() -> void:
+	pass
+
+func _on_shield_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/minigames/ButtonSmash.tscn")
+
+
+func _on_speed_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/minigames/Agitate.tscn")

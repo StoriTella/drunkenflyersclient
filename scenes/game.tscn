@@ -119,4 +119,6 @@ size_flags_vertical = 0
 text = "Disconnect"
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/ForwardButton" to="." method="_on_forward_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton" to="." method="_on_shield_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton" to="." method="_on_speed_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Disconnect" to="." method="_on_disconnect_pressed"]
