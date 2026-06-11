@@ -45,7 +45,10 @@ func _on_shield_timer_timeout() -> void:
 
 func _on_dash_timer_timeout() -> void:
 	dash_button.disabled = false
-	
+
+func _on_spike_timer_timeout() -> void:
+	spike_button.disabled = false
+
 func set_left_enabled_button(enabled: bool):
 	left_button.disabled = enabled
 

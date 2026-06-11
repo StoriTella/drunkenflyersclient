@@ -10,6 +10,7 @@ var server_port = "4242"
 @onready var status_label = $PanelContainer/VBoxContainer/StatusLabel
 @onready var name_label = $PanelContainer/VBoxContainer/Name
 @onready var exit_button = $PanelContainer/VBoxContainer/HBoxContainer/ExitButton
+@onready var color_picker_button = $PanelContainer/VBoxContainer/ColorPickerButton
 
 func _ready():
 	load_saved_config()
@@ -34,6 +35,7 @@ func _on_disconnect_button_pressed():
 
 func _on_connect_button_pressed():
 	Global.set_player_name_client(name_label.text)
+	Global.set_player_color_client(color_picker_button.color)
 	var ip = ip_line_edit.text.strip_edges()
 	var port = int(port_line_edit.text.strip_edges())
 	

@@ -29,6 +29,9 @@ font_size = 72
 [sub_resource type="Theme" id="Theme_g6rob"]
 default_font_size = 72
 
+[sub_resource type="Theme" id="Theme_1t5vp"]
+default_font_size = 72
+
 [sub_resource type="LabelSettings" id="LabelSettings_nt2lr"]
 font_size = 72
 
@@ -80,6 +83,11 @@ label_settings = SubResource("LabelSettings_g6rob")
 layout_mode = 2
 theme = SubResource("Theme_g6rob")
 text = "Vinte"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PanelContainer/VBoxContainer" unique_id=995287330]
+layout_mode = 2
+theme = SubResource("Theme_1t5vp")
+text = "Color"
 
 [node name="HBoxContainerIP" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=554722213]
 layout_mode = 2

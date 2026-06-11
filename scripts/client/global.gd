@@ -5,6 +5,7 @@ var server_port = "4242"
 var connected = false
 var peer = ENetMultiplayerPeer.new()
 var player_name: String = "John Doe"
+var player_color: Color = Color.GREEN
 var is_in_minigame: bool = false
 
 var left_enabled: bool = true
@@ -55,6 +56,7 @@ func _on_connected():
 	set_player_name_client(player_name)
 	rpc("ping")
 	rpc("set_player_name", player_name)
+	rpc("set_player_color", player_color)
 
 func _on_connection_failed():
 	connected = false
@@ -79,6 +81,9 @@ func _physics_process(delta):
 func set_player_name_client(new_player_name: String):
 	player_name = new_player_name
 
+func set_player_color_client(new_player_color: Color):
+	player_color = new_player_color
+	
 func _on_reset_button_pressed():
 	if connected:
 		rpc("reset_orientation")
@@ -127,6 +132,10 @@ func normal_damage_sound():
 
 @rpc("any_peer","call_remote", "reliable")
 func set_player_name(player_name: String):
+	pass
+
+@rpc("any_peer","call_remote", "reliable")
+func set_player_color(player_color: Color):
 	pass
 
 @rpc("any_peer","call_remote", "reliable")
