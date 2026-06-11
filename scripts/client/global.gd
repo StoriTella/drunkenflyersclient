@@ -45,8 +45,9 @@ func _on_connected():
 	connected = true
 	print("Connected ID: ", multiplayer.get_unique_id())
 	print("player_name: ", player_name)
-	rpc_id(1, "set_player_name", player_name)
+	set_player_name_client(player_name)
 	rpc_id(1, "ping")
+	rpc("set_player_name", player_name)
 
 func _on_connection_failed():
 	connected = false
@@ -65,6 +66,9 @@ func _physics_process(delta):
 	rpc("update_gyro", gyro)
 	rpc("update_gravity", gravity)
 
+func set_player_name_client(new_player_name: String):
+	player_name = new_player_name
+
 func _on_reset_button_pressed():
 	if connected:
 		rpc("reset_orientation")
@@ -81,9 +85,6 @@ func load_saved_config():
 	if config.load("user://connection.cfg") == OK:
 		var saved_ip = config.get_value("connection", "ip", "")
 		var saved_port = config.get_value("connection", "port", 4242)
-
-func set_player_name(name: String):
-	player_name = name
 
 @rpc("any_peer", "call_remote")
 func ping():
@@ -113,6 +114,10 @@ func normal_coin_sound():
 @rpc("any_peer","call_remote", "unreliable")
 func normal_damage_sound():
 	play_random_sound(preload("res://assets/damage.mp3"), 0.8, 1.2, 0.8, 1.2)
+
+@rpc("any_peer","call_remote", "unreliable")
+func set_player_name(player_name: String):
+	pass
 
 func play_random_sound(sound: AudioStream, pitch_min: float, pitch_max: float, speed_min: float, speed_max: float):
 	var player = AudioStreamPlayer2D.new()

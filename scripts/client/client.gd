@@ -32,6 +32,7 @@ func _on_disconnect_button_pressed():
 		disconnect_from_server()
 
 func _on_connect_button_pressed():
+	Global.set_player_name_client(name_label.text)
 	var ip = ip_line_edit.text.strip_edges()
 	var port = int(port_line_edit.text.strip_edges())
 	
@@ -43,7 +44,6 @@ func _on_connect_button_pressed():
 		status_label.text = "Invalid port (1-65535)"
 		return
 	connect_to_server(ip, port)
-	Global.set_player_name(name_label.text)
 
 func connect_to_server(ip: String, port: int):
 	status_label.text = "State: Connecting..."
