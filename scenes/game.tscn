@@ -1,6 +1,22 @@
 [gd_scene format=3 uid="uid://dv3ldc84l28k1"]
 
 [ext_resource type="Script" uid="uid://b3fov87g8v8x0" path="res://scripts/client/game.gd" id="1_uwrxv"]
+[ext_resource type="Theme" uid="uid://bbsb0mwr08726" path="res://assets/themes/ButtonThemes.tres" id="2_yqjtg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqjtg"]
+content_margin_left = 100.0
+content_margin_top = 100.0
+content_margin_right = 100.0
+content_margin_bottom = 100.0
+bg_color = Color(0.9618922, 0.30210367, 0.68868446, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_uwrxv"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_yqjtg")
 
 [node name="Game" type="Control" unique_id=1867825606]
 layout_mode = 3
@@ -13,11 +29,94 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uwrxv")
 
-[node name="Disconnect" type="Button" parent="." unique_id=1652637947]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1799629793]
 layout_mode = 1
-offset_left = 1652.0
-offset_right = 1921.0
-offset_bottom = 152.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_uwrxv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=544835247]
+layout_mode = 2
+
+[node name="VBoxContainerControls" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=158121040]
+layout_mode = 2
+
+[node name="ControlsLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=246515799]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Controls"
+
+[node name="ForwardButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=897129798]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Forward"
+
+[node name="BackButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=315603036]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Back
+"
+
+[node name="LeftButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=1778444702]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Left"
+
+[node name="RightButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=647054652]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Right"
+
+[node name="CoreButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=1546187311]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Core"
+
+[node name="VBoxContainerPowerUps" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=138200139]
+layout_mode = 2
+
+[node name="PowerUpsLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=953102422]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Power Ups"
+
+[node name="ShieldButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=371042611]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Shield"
+
+[node name="SpeedButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=756137009]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Speed"
+
+[node name="SpikeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=82594297]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Spike"
+
+[node name="InvButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=1001308087]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Inv"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1163923241]
+layout_mode = 2
+
+[node name="StatsLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1894205979]
+layout_mode = 2
+theme = ExtResource("2_yqjtg")
+text = "Stats"
+
+[node name="Disconnect" type="Button" parent="PanelContainer/HBoxContainer" unique_id=1652637947]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
 text = "Disconnect"
 
-[connection signal="pressed" from="Disconnect" to="." method="_on_disconnect_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/ForwardButton" to="." method="_on_forward_button_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Disconnect" to="." method="_on_disconnect_pressed"]

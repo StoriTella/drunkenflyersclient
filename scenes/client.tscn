@@ -2,6 +2,23 @@
 
 [ext_resource type="Script" uid="uid://d25apyad23oi6" path="res://scripts/client/client.gd" id="1_5f806"]
 
+[sub_resource type="Theme" id="Theme_5f806"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t5vp"]
+content_margin_left = 100.0
+content_margin_top = 100.0
+content_margin_right = 100.0
+content_margin_bottom = 100.0
+bg_color = Color(0.9618922, 0.30210367, 0.68868446, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_4tr0r"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_1t5vp")
+
 [sub_resource type="Theme" id="Theme_8hduq"]
 default_font_size = 72
 
@@ -33,69 +50,77 @@ default_font_size = 72
 default_font_size = 72
 
 [node name="ClientRoot" type="Panel" unique_id=723361514]
-offset_right = 1920.0
-offset_bottom = 1080.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_5f806")
 script = ExtResource("1_5f806")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1284620183]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=684634921]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_4tr0r")
 
-[node name="StatusLabel" type="Label" parent="VBoxContainer" unique_id=459156630]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1284620183]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=459156630]
 layout_mode = 2
 theme = SubResource("Theme_8hduq")
 label_settings = SubResource("LabelSettings_g6rob")
 
-[node name="Name" type="LineEdit" parent="VBoxContainer" unique_id=1915278816]
+[node name="Name" type="LineEdit" parent="PanelContainer/VBoxContainer" unique_id=1915278816]
 layout_mode = 2
 theme = SubResource("Theme_g6rob")
 text = "Vinte"
 
-[node name="HBoxContainerIP" type="HBoxContainer" parent="VBoxContainer" unique_id=554722213]
+[node name="HBoxContainerIP" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=554722213]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainerIP" unique_id=11675700]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainerIP" unique_id=11675700]
 layout_mode = 2
 text = "Ip:"
 label_settings = SubResource("LabelSettings_nt2lr")
 
-[node name="IpLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainerIP" unique_id=311261085]
+[node name="IpLineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainerIP" unique_id=311261085]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = SubResource("Theme_ddqq8")
 text = "192.168.1.143"
 emoji_menu_enabled = false
 
-[node name="HBoxContainerPorta" type="HBoxContainer" parent="VBoxContainer" unique_id=1125632579]
+[node name="HBoxContainerPorta" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1125632579]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainerPorta" unique_id=1356556547]
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainerPorta" unique_id=1356556547]
 layout_mode = 2
 text = "Port:"
 label_settings = SubResource("LabelSettings_ad8ya")
 
-[node name="PortLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainerPorta" unique_id=40646318]
+[node name="PortLineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainerPorta" unique_id=40646318]
 layout_mode = 2
 theme = SubResource("Theme_03rmu")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=717651986]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=717651986]
 layout_mode = 2
 
-[node name="ConnectButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=802563028]
+[node name="ConnectButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=802563028]
 layout_mode = 2
 theme = SubResource("Theme_b3wi1")
 text = "Connect"
 
-[node name="DisconnectButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1906354397]
+[node name="DisconnectButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1906354397]
 layout_mode = 2
 theme = SubResource("Theme_1ssov")
 text = "Disconnect"
 
-[node name="ResetButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1451283164]
+[node name="ResetButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1451283164]
 layout_mode = 2
 theme = SubResource("Theme_i2t61")
 text = "Reset"

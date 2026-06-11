@@ -3,12 +3,12 @@ extends Control
 var server_ip = "192.168.1.143"
 var server_port = "4242"
 
-@onready var ip_line_edit = $VBoxContainer/HBoxContainerIP/IpLineEdit
-@onready var port_line_edit = $VBoxContainer/HBoxContainerPorta/PortLineEdit
-@onready var connect_button = $VBoxContainer/HBoxContainer/ConnectButton
-@onready var disconnect_button = $VBoxContainer/HBoxContainer/DisconnectButton
-@onready var status_label = $VBoxContainer/StatusLabel
-@onready var name_label = $VBoxContainer/Name
+@onready var ip_line_edit = $PanelContainer/VBoxContainer/HBoxContainerIP/IpLineEdit
+@onready var port_line_edit = $PanelContainer/VBoxContainer/HBoxContainerPorta/PortLineEdit
+@onready var connect_button = $PanelContainer/VBoxContainer/HBoxContainer/ConnectButton
+@onready var disconnect_button = $PanelContainer/VBoxContainer/HBoxContainer/DisconnectButton
+@onready var status_label = $PanelContainer/VBoxContainer/StatusLabel
+@onready var name_label = $PanelContainer/VBoxContainer/Name
 
 func _ready():
 	load_saved_config()
@@ -57,6 +57,7 @@ func connect_to_server(ip: String, port: int):
 	Global.multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
 	var error = Global.peer.create_client(ip, port)
+	get_tree().change_scene_to_file("res://scenes/game.tscn")
 	
 	if error != OK:
 		status_label.text = "Error creating client"
