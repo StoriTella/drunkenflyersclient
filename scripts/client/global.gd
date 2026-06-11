@@ -99,39 +99,39 @@ func update_gyro(gyro_data: Vector3):
 	pass
 
 @rpc("any_peer", "call_remote", "unreliable")
+func update_gravity(gravity):
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
 func reset_orientation():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
-func update_gravity(gravity):
-	pass
-	
-@rpc("any_peer","call_remote", "unreliable")
+@rpc("any_peer","call_remote", "reliable")
 func vibrate_player(duration_ms: int):
 	print("Vibrar: ", duration_ms, "ms")
 	Input.vibrate_handheld(duration_ms)
 
-@rpc("any_peer","call_remote", "unreliable")
+@rpc("any_peer","call_remote", "reliable")
 func normal_coin_sound():
 	play_random_sound(preload("res://assets/coin.mp3"), 0.8, 1.2, 0.8, 1.2)
 
-@rpc("any_peer","call_remote", "unreliable")
+@rpc("any_peer","call_remote", "reliable")
 func normal_damage_sound():
 	play_random_sound(preload("res://assets/damage.mp3"), 0.8, 1.2, 0.8, 1.2)
 
-@rpc("any_peer","call_remote", "unreliable")
+@rpc("any_peer","call_remote", "reliable")
 func set_player_name(player_name: String):
 	pass
 
-@rpc("any_peer","call_remote", "unreliable")
+@rpc("any_peer","call_remote", "reliable")
 func add_speed_powerup():
 	pass
 
-@rpc("any_peer","call_remote", "unreliable")
+@rpc("any_peer","call_remote", "reliable")
 func add_shield_powerup():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func nuclear_missile_powerup():
 	pass
 
@@ -150,80 +150,80 @@ func play_random_sound(sound: AudioStream, pitch_min: float, pitch_max: float, s
 
 
 #system movement and core
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_left():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_right():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_up():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_down():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_core():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_left():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_right():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_up():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_down():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_core():
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_left_enabled(enabled: bool):
 	while not has_node("/root/Game"):
 		await get_tree().create_timer(0.1).timeout
 	get_node("/root/Game").set_left_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_right_enabled(enabled: bool):
 	while not has_node("/root/Game"):
 		await get_tree().create_timer(0.1).timeout
 	get_node("/root/Game").set_right_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_up_enabled(enabled: bool):
 	while not has_node("/root/Game"):
 		await get_tree().create_timer(0.1).timeout
 	get_node("/root/Game").set_up_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_down_enabled(enabled: bool):
 	while not has_node("/root/Game"):
 		await get_tree().create_timer(0.1).timeout
 	get_node("/root/Game").set_down_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_core_enabled(enabled: bool):
 	while not has_node("/root/Game"):
 		await get_tree().create_timer(0.1).timeout
 	get_node("/root/Game").set_core_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func perform_dash(direction: Vector2, force: float):
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func spike_powerup():
 	pass
