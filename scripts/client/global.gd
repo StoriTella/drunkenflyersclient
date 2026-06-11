@@ -192,25 +192,34 @@ func repair_systems_core():
 
 @rpc("any_peer", "call_remote", "unreliable")
 func set_left_enabled(enabled: bool):
-	if has_node("/root/Game"):
-		get_node("/root/Game").set_left_enabled_button(enabled)
+	while not has_node("/root/Game"):
+		await get_tree().create_timer(0.1).timeout
+	get_node("/root/Game").set_left_enabled_button(enabled)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func set_right_enabled(enabled: bool):
-	if has_node("/root/Game"):
-		get_node("/root/Game").set_right_enabled_button(enabled)
+	while not has_node("/root/Game"):
+		await get_tree().create_timer(0.1).timeout
+	get_node("/root/Game").set_right_enabled_button(enabled)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func set_up_enabled(enabled: bool):
-	if has_node("/root/Game"):
-		get_node("/root/Game").set_up_enabled_button(enabled)
+	while not has_node("/root/Game"):
+		await get_tree().create_timer(0.1).timeout
+	get_node("/root/Game").set_up_enabled_button(enabled)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func set_down_enabled(enabled: bool):
-	if has_node("/root/Game"):
-		get_node("/root/Game").set_down_enabled_button(enabled)
+	while not has_node("/root/Game"):
+		await get_tree().create_timer(0.1).timeout
+	get_node("/root/Game").set_down_enabled_button(enabled)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func set_core_enabled(enabled: bool):
-	if has_node("/root/Game"):
-		get_node("/root/Game").set_core_enabled_button(enabled)
+	while not has_node("/root/Game"):
+		await get_tree().create_timer(0.1).timeout
+	get_node("/root/Game").set_core_enabled_button(enabled)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func perform_dash(direction: Vector2, force: float):
+	pass

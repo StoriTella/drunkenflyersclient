@@ -10,6 +10,7 @@ extends Control
 
 @onready var shield_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton
 @onready var speed_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton
+@onready var dash_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton
 @onready var spike_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpikeButton
 
 func _on_disconnect_pressed() -> void:
@@ -25,27 +26,33 @@ func _on_speed_button_pressed() -> void:
 	speed_button.disabled = true
 	get_tree().change_scene_to_file("res://scenes/minigames/Agitate.tscn")
 
+func _on_dash_button_pressed() -> void:
+	speed_button.disabled = true
+	get_tree().change_scene_to_file("res://scenes/minigames/Slide.tscn")
+
 func _on_speed_timer_timeout() -> void:
 	speed_button.disabled = false
-
 
 func _on_shield_timer_timeout() -> void:
 	shield_button.disabled = false
 
+func _on_dash_timer_timeout() -> void:
+	dash_button.disabled = false
+	
 func set_left_enabled_button(enabled: bool):
-	left_button.disabled = not enabled
+	left_button.disabled = enabled
 
 func set_right_enabled_button(enabled: bool):
-	right_button.disabled = not enabled
+	right_button.disabled = enabled
 
 func set_up_enabled_button(enabled: bool):
-	up_button.disabled = not enabled
+	up_button.disabled = enabled
 
 func set_down_enabled_button(enabled: bool):
-	down_button.disabled = not enabled
+	down_button.disabled = enabled
 
 func set_core_enabled_button(enabled: bool):
-	core_button.disabled = not enabled
+	core_button.disabled = enabled
 
 func _on_up_button_pressed() -> void:
 	Global.rpc("repair_systems_up")
