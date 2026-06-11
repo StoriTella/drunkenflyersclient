@@ -1,7 +1,7 @@
 extends Control
 
-@export var min_buttons: int = 8
-@export var max_buttons: int = 12
+@export var min_buttons: int = 10
+@export var max_buttons: int = 15
 @export var button_text: String = "Click me!!!"
 @export var button_width: int = 100
 @export var button_height: int = 60
@@ -48,6 +48,7 @@ func _on_button_pressed(button: Button):
 	
 	if buttons_clicked >= total_buttons:
 		Minigames.complete_minigame(true)
+		rpc("add_shield_powerup")
 
 func clear_buttons():
 	for child in get_children():

@@ -86,12 +86,21 @@ text = "Power Ups"
 [node name="ShieldButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=371042611]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
+disabled = true
 text = "Shield"
+
+[node name="ShieldTimer" type="Timer" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton" unique_id=1052311304]
+wait_time = 5.0
+autostart = true
 
 [node name="SpeedButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=756137009]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
+disabled = true
 text = "Speed"
+
+[node name="SpeedTimer" type="Timer" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton" unique_id=2042941132]
+autostart = true
 
 [node name="SpikeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=82594297]
 layout_mode = 2
@@ -120,5 +129,7 @@ text = "Disconnect"
 
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/ForwardButton" to="." method="_on_forward_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton" to="." method="_on_shield_button_pressed"]
+[connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton/ShieldTimer" to="." method="_on_shield_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton" to="." method="_on_speed_button_pressed"]
+[connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton/SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Disconnect" to="." method="_on_disconnect_pressed"]

@@ -47,7 +47,7 @@ func _on_connected():
 	print("Connected ID: ", multiplayer.get_unique_id())
 	print("player_name: ", player_name)
 	set_player_name_client(player_name)
-	rpc_id(1, "ping")
+	rpc("ping")
 	rpc("set_player_name", player_name)
 
 func _on_connection_failed():
@@ -121,6 +121,14 @@ func normal_damage_sound():
 
 @rpc("any_peer","call_remote", "unreliable")
 func set_player_name(player_name: String):
+	pass
+
+@rpc("any_peer","call_remote", "unreliable")
+func add_speed_powerup():
+	pass
+
+@rpc("any_peer","call_remote", "unreliable")
+func add_shield_powerup():
 	pass
 
 func play_random_sound(sound: AudioStream, pitch_min: float, pitch_max: float, speed_min: float, speed_max: float):

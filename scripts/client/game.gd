@@ -16,13 +16,21 @@ func _on_disconnect_pressed() -> void:
 	Global.disconnect_from_server()
 	get_tree().change_scene_to_file("res://scenes/client.tscn")
 
-
 func _on_forward_button_pressed() -> void:
 	pass
 
 func _on_shield_button_pressed() -> void:
+	shield_button.disabled = true
 	get_tree().change_scene_to_file("res://scenes/minigames/ButtonSmash.tscn")
 
 
 func _on_speed_button_pressed() -> void:
+	speed_button.disabled = true
 	get_tree().change_scene_to_file("res://scenes/minigames/Agitate.tscn")
+
+func _on_speed_timer_timeout() -> void:
+	speed_button.disabled = false
+
+
+func _on_shield_timer_timeout() -> void:
+	shield_button.disabled = false
