@@ -44,9 +44,5 @@ func update_swipe_preview(current_pos: Vector2):
 	line.add_point(swipe_start)
 	line.add_point(current_pos)
 
-func complete_minigame():
-	Global.is_in_minigame = false
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
-
 func _on_timer_timeout() -> void:
 	Minigames.complete_minigame(false)

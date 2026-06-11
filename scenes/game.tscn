@@ -145,4 +145,5 @@ text = "Disconnect"
 [connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton/SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton" to="." method="_on_dash_button_pressed"]
 [connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton/DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpikeButton" to="." method="_on_spike_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Disconnect" to="." method="_on_disconnect_pressed"]

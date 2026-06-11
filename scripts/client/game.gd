@@ -30,6 +30,10 @@ func _on_dash_button_pressed() -> void:
 	speed_button.disabled = true
 	get_tree().change_scene_to_file("res://scenes/minigames/Slide.tscn")
 
+func _on_spike_button_pressed() -> void:
+	spike_button.disabled = true
+	get_tree().change_scene_to_file("res://scenes/minigames/Spike.tscn")
+
 func _on_speed_timer_timeout() -> void:
 	speed_button.disabled = false
 

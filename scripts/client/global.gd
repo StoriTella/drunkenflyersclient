@@ -223,3 +223,8 @@ func set_core_enabled(enabled: bool):
 @rpc("any_peer", "call_remote", "unreliable")
 func perform_dash(direction: Vector2, force: float):
 	pass
+
+
+@rpc("any_peer", "call_remote", "unreliable")
+func spike_powerup():
+	pass
