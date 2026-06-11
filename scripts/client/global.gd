@@ -7,6 +7,12 @@ var peer = ENetMultiplayerPeer.new()
 var player_name: String = "John Doe"
 var is_in_minigame: bool = false
 
+var left_enabled: bool = true
+var right_enabled: bool = true
+var up_enabled: bool = true
+var down_enabled: bool = true
+var core_enabled: bool = true
+
 func _ready():
 	load_saved_config()
 
@@ -190,35 +196,35 @@ func repair_systems_down():
 func repair_systems_core():
 	pass
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote", "unreliable")
 func set_left_enabled(enabled: bool):
-	while not has_node("/root/Game"):
-		await get_tree().create_timer(0.1).timeout
-	get_node("/root/Game").set_left_enabled_button(enabled)
+	left_enabled = enabled
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_left_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote", "unreliable")
 func set_right_enabled(enabled: bool):
-	while not has_node("/root/Game"):
-		await get_tree().create_timer(0.1).timeout
-	get_node("/root/Game").set_right_enabled_button(enabled)
+	right_enabled = enabled
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_right_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote", "unreliable")
 func set_up_enabled(enabled: bool):
-	while not has_node("/root/Game"):
-		await get_tree().create_timer(0.1).timeout
-	get_node("/root/Game").set_up_enabled_button(enabled)
+	up_enabled = enabled
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_up_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote", "unreliable")
 func set_down_enabled(enabled: bool):
-	while not has_node("/root/Game"):
-		await get_tree().create_timer(0.1).timeout
-	get_node("/root/Game").set_down_enabled_button(enabled)
+	down_enabled = enabled
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_down_enabled_button(enabled)
 
-@rpc("any_peer", "call_remote", "reliable")
+@rpc("any_peer", "call_remote", "unreliable")
 func set_core_enabled(enabled: bool):
-	while not has_node("/root/Game"):
-		await get_tree().create_timer(0.1).timeout
-	get_node("/root/Game").set_core_enabled_button(enabled)
+	core_enabled = enabled
+	if has_node("/root/Game"):
+		get_node("/root/Game").set_core_enabled_button(enabled)
 
 @rpc("any_peer", "call_remote", "reliable")
 func perform_dash(direction: Vector2, force: float):
@@ -227,3 +233,13 @@ func perform_dash(direction: Vector2, force: float):
 @rpc("any_peer", "call_remote", "reliable")
 func spike_powerup():
 	pass
+
+
+func apply_stored_state():
+	if has_node("/root/Game"):
+		var game = get_node("/root/Game")
+		game.set_left_enabled_button(left_enabled)
+		game.set_right_enabled_button(right_enabled)
+		game.set_up_enabled_button(up_enabled)
+		game.set_down_enabled_button(down_enabled)
+		game.set_core_enabled_button(core_enabled)

@@ -13,6 +13,9 @@ extends Control
 @onready var dash_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton
 @onready var spike_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpikeButton
 
+func _ready():
+	Global.apply_stored_state()
+
 func _on_disconnect_pressed() -> void:
 	Global.disconnect_from_server()
 	get_tree().change_scene_to_file("res://scenes/client.tscn")

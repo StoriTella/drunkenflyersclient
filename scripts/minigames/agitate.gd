@@ -1,8 +1,8 @@
 extends Control
 
 @export var shake_threshold: float = 5.0
-@export var required_shakes_min: int = 100
-@export var required_shakes_max: int = 200
+@export var required_shakes_min: int = 70
+@export var required_shakes_max: int = 100
 @export var shake_timeout: float = 0.2
 
 @onready var timer: Timer = $Timer

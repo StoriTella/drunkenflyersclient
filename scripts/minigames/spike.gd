@@ -1,7 +1,7 @@
 extends Control
 
 @export var required_slices_per_circle: int = 8
-@export var required_circles: int = 5
+@export var required_circles: int = 2
 @export var radius: float = 150.0
 
 var circles_completed: int = 0
