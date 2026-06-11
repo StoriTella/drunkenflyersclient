@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dv3ldc84l28k1"]
+
+[ext_resource type="Script" uid="uid://b3fov87g8v8x0" path="res://scripts/client/game.gd" id="1_uwrxv"]
+
+[node name="Game" type="Control" unique_id=1867825606]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -5.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uwrxv")
+
+[node name="Disconnect" type="Button" parent="." unique_id=1652637947]
+layout_mode = 1
+offset_left = 1652.0
+offset_right = 1921.0
+offset_bottom = 152.0
+text = "Disconnect"
+
+[connection signal="pressed" from="Disconnect" to="." method="_on_disconnect_pressed"]
