@@ -46,7 +46,7 @@ func _process(delta):
 		if shake_count >= required_shakes:
 			is_complete = true
 			Minigames.complete_minigame(true)
-			rpc("add_speed_powerup")
+			Global.rpc("add_speed_powerup")
 	
 	last_accel = current_accel
 

@@ -48,7 +48,7 @@ func _on_button_pressed(button: Button):
 	
 	if buttons_clicked >= total_buttons:
 		Minigames.complete_minigame(true)
-		rpc("add_shield_powerup")
+		Global.rpc("add_shield_powerup")
 
 func clear_buttons():
 	for child in get_children():
