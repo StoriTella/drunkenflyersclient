@@ -14,9 +14,6 @@ var up_enabled: bool = true
 var down_enabled: bool = true
 var core_enabled: bool = true
 
-func _ready():
-	load_saved_config()
-
 func _on_disconnect_button_pressed():
 		disconnect_from_server()
 
@@ -35,7 +32,6 @@ func connect_to_server(ip: String, port: int, name):
 		return
 	
 	multiplayer.multiplayer_peer = peer
-	save_config(ip, port)
 
 func disconnect_from_server():
 	if multiplayer.connected_to_server.is_connected(_on_connected):
@@ -83,23 +79,6 @@ func set_player_name_client(new_player_name: String):
 
 func set_player_color_client(new_player_color: Color):
 	player_color = new_player_color
-	
-func _on_reset_button_pressed():
-	if connected:
-		rpc("reset_orientation")
-		await get_tree().create_timer(1.0).timeout
-
-func save_config(ip: String, port: int):
-	var config = ConfigFile.new()
-	config.set_value("connection", "ip", ip)
-	config.set_value("connection", "port", port)
-	config.save("user://connection.cfg")
-
-func load_saved_config():
-	var config = ConfigFile.new()
-	if config.load("user://connection.cfg") == OK:
-		var saved_ip = config.get_value("connection", "ip", "")
-		var saved_port = config.get_value("connection", "port", 4242)
 
 @rpc("any_peer", "call_remote")
 func ping():

@@ -29,9 +29,6 @@ font_size = 72
 [sub_resource type="Theme" id="Theme_g6rob"]
 default_font_size = 72
 
-[sub_resource type="Theme" id="Theme_1t5vp"]
-default_font_size = 72
-
 [sub_resource type="LabelSettings" id="LabelSettings_nt2lr"]
 font_size = 72
 
@@ -84,11 +81,6 @@ layout_mode = 2
 theme = SubResource("Theme_g6rob")
 text = "Vinte"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="PanelContainer/VBoxContainer" unique_id=995287330]
-layout_mode = 2
-theme = SubResource("Theme_1t5vp")
-text = "Color"
-
 [node name="HBoxContainerIP" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=554722213]
 layout_mode = 2
 
@@ -139,6 +131,11 @@ layout_mode = 2
 theme = ExtResource("2_1t5vp")
 text = "Quit"
 
+[node name="ColorPickerButton" type="ColorPickerButton" parent="PanelContainer/VBoxContainer" unique_id=904321773]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="color_changed" from="PanelContainer/VBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]

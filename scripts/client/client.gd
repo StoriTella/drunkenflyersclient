@@ -3,14 +3,16 @@ extends Control
 var server_ip = "192.168.1.143"
 var server_port = "4242"
 
-@onready var ip_line_edit = $PanelContainer/VBoxContainer/HBoxContainerIP/IpLineEdit
-@onready var port_line_edit = $PanelContainer/VBoxContainer/HBoxContainerPorta/PortLineEdit
-@onready var connect_button = $PanelContainer/VBoxContainer/HBoxContainer/ConnectButton
-@onready var disconnect_button = $PanelContainer/VBoxContainer/HBoxContainer/DisconnectButton
-@onready var status_label = $PanelContainer/VBoxContainer/StatusLabel
-@onready var name_label = $PanelContainer/VBoxContainer/Name
-@onready var exit_button = $PanelContainer/VBoxContainer/HBoxContainer/ExitButton
-@onready var color_picker_button = $PanelContainer/VBoxContainer/ColorPickerButton
+@onready var ip_line_edit: LineEdit = $PanelContainer/VBoxContainer/HBoxContainerIP/IpLineEdit
+@onready var port_line_edit: LineEdit = $PanelContainer/VBoxContainer/HBoxContainerPorta/PortLineEdit
+@onready var connect_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/ConnectButton
+@onready var disconnect_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/DisconnectButton
+@onready var status_label: Label = $PanelContainer/VBoxContainer/StatusLabel
+@onready var name_label: LineEdit = $PanelContainer/VBoxContainer/Name
+@onready var exit_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/ExitButton
+@onready var color_picker: ColorPickerButton = $PanelContainer/VBoxContainer/ColorPickerButton
+
+var player_color: Color
 
 func _ready():
 	load_saved_config()
@@ -35,7 +37,7 @@ func _on_disconnect_button_pressed():
 
 func _on_connect_button_pressed():
 	Global.set_player_name_client(name_label.text)
-	Global.set_player_color_client(color_picker_button.color)
+	Global.set_player_color_client(player_color)
 	var ip = ip_line_edit.text.strip_edges()
 	var port = int(port_line_edit.text.strip_edges())
 	
@@ -73,7 +75,7 @@ func connect_to_server(ip: String, port: int):
 		return
 	
 	Global.multiplayer.multiplayer_peer = Global.peer
-	save_config(ip, port, name_label.text, color_picker_button.color)
+	save_config(ip, port, name_label.text, player_color)
 
 func disconnect_from_server():
 	if Global.multiplayer.connected_to_server.is_connected(_on_connected):
@@ -131,26 +133,19 @@ func _on_reset_button_pressed():
 		status_label.text = "State: connected!"
 
 func save_config(ip, port, name, color):
-	var config = ConfigFile.new()
-	config.set_value("connection", "ip", ip)
-	config.set_value("connection", "port", port)
-	config.set_value("player", "name", name)
-	config.set_value("player", "color", color)
-	config.save("user://settings.cfg") 
+	Configs.save(ip, port, name, color)
 
 func load_saved_config():
-	var config = ConfigFile.new()
-	if config.load("user://connection.cfg") == OK:
-		var saved_ip = config.get_value("connection", "ip", "")
-		var saved_port = config.get_value("connection", "port", 4242)
-		var saved_name = config.get_value("player", "name", 4242)
-		var saved_color = config.get_value("player", "color", 4242)
-		ip_line_edit.text = saved_ip
-		port_line_edit.text = str(saved_port)
-	else:
-		ip_line_edit.text = server_ip
-		port_line_edit.text = server_port
-
+	var config = ConfigManager.load()
+	ip_line_edit.text = config["ip"]
+	port_line_edit.text = str(config["port"])
+	name_label.text = config["name"]
+	color_picker.color = config["color"]
+	player_color = config["color"]
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_color_picker_button_color_changed(color: Color) -> void:
+	player_color = color
