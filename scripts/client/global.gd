@@ -27,7 +27,6 @@ func connect_to_server(ip: String, port: int, name):
 		return
 	
 	multiplayer.multiplayer_peer = peer
-	rpc_id(1, "set_player_name", player_name)
 	save_config(ip, port)
 
 func disconnect_from_server():
@@ -44,16 +43,18 @@ func disconnect_from_server():
 
 func _on_connected():
 	connected = true
-	print("✅ Conectado ao servidor! ID: ", multiplayer.get_unique_id())
-	rpc("ping")
+	print("Connected ID: ", multiplayer.get_unique_id())
+	print("player_name: ", player_name)
+	rpc_id(1, "set_player_name", player_name)
+	rpc_id(1, "ping")
 
 func _on_connection_failed():
 	connected = false
-	print("❌ Falha na conexão")
+	print("Error on connection")
 
 func _on_server_disconnected():
 	connected = false
-	print("⚠️ Desconectado do servidor")
+	print("Disconnected from server")
 
 func _physics_process(delta):
 	if not connected:
@@ -91,8 +92,7 @@ func ping():
 @rpc("any_peer", "call_remote", "unreliable")
 func update_gyro(gyro_data: Vector3):
 	pass
-	
-# ✅ Recebe o comando de reset do telemóvel
+
 @rpc("any_peer", "call_remote", "unreliable")
 func reset_orientation():
 	pass
