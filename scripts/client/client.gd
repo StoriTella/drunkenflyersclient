@@ -58,7 +58,6 @@ func connect_to_server(ip: String, port: int):
 	Global.multiplayer.server_disconnected.connect(_on_server_disconnected)
 	
 	var error = Global.peer.create_client(ip, port)
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
 	
 	if error != OK:
 		status_label.text = "Error creating client"
@@ -90,10 +89,10 @@ func disconnect_from_server():
 	status_label.modulate = Color.RED
 
 func _on_connected():
-	Global._on_connected()
 	update_ui_state(true)
 	status_label.text = "State: Connected!"
 	status_label.modulate = Color.GREEN
+	Global._on_connected()
 	get_tree().change_scene_to_file("res://scenes/game.tscn")
 
 func _on_connection_failed():
@@ -121,15 +120,6 @@ func update_ui_state(is_connected: bool):
 		connect_button.disabled = false
 		ip_line_edit.editable = true
 		port_line_edit.editable = true
-
-func _physics_process(delta):
-	if not Global.connected:
-		return
-	
-	var gyro = Input.get_gyroscope()
-	var gravity = Input.get_gravity()
-	Global.rpc("update_gyro", gyro)
-	Global.rpc("update_gravity", gravity)
 
 func _on_reset_button_pressed():
 	if Global.connected:
