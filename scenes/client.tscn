@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cfyu3kpjs52lo"]
 
 [ext_resource type="Script" uid="uid://d25apyad23oi6" path="res://scripts/client/client.gd" id="1_5f806"]
+[ext_resource type="Theme" uid="uid://bbsb0mwr08726" path="res://assets/themes/ButtonThemes.tres" id="2_1t5vp"]
 
 [sub_resource type="Theme" id="Theme_5f806"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t5vp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5f806"]
 content_margin_left = 100.0
 content_margin_top = 100.0
 content_margin_right = 100.0
@@ -17,7 +18,7 @@ border_width_bottom = 20
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_4tr0r"]
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_1t5vp")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_5f806")
 
 [sub_resource type="Theme" id="Theme_8hduq"]
 default_font_size = 72
@@ -124,3 +125,10 @@ text = "Disconnect"
 layout_mode = 2
 theme = SubResource("Theme_i2t61")
 text = "Reset"
+
+[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=484890156]
+layout_mode = 2
+theme = ExtResource("2_1t5vp")
+text = "Quit"
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

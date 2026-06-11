@@ -9,6 +9,7 @@ var server_port = "4242"
 @onready var disconnect_button = $PanelContainer/VBoxContainer/HBoxContainer/DisconnectButton
 @onready var status_label = $PanelContainer/VBoxContainer/StatusLabel
 @onready var name_label = $PanelContainer/VBoxContainer/Name
+@onready var exit_button = $PanelContainer/VBoxContainer/HBoxContainer/ExitButton
 
 func _ready():
 	load_saved_config()
@@ -153,3 +154,7 @@ func load_saved_config():
 	else:
 		ip_line_edit.text = server_ip
 		port_line_edit.text = server_port
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()
