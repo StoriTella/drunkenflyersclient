@@ -13,12 +13,14 @@ var circle_completing: bool = false
 
 @onready var line: Line2D = $Line2D
 @onready var status_label: Label = $StatusLabel
+@onready var timer: Timer = $Timer
 
 func _ready():
 	Global.is_in_minigame = true
 	line.width = 5
 	line.default_color = Color.WHITE
 	update_status_label()
+	timer.start()
 
 func _input(event):
 	if event is InputEventScreenTouch or event is InputEventMouseButton:
