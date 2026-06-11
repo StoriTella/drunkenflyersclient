@@ -73,7 +73,7 @@ func connect_to_server(ip: String, port: int):
 		return
 	
 	Global.multiplayer.multiplayer_peer = Global.peer
-	save_config(ip, port)
+	save_config(ip, port, name_label.text, color_picker_button.color)
 
 func disconnect_from_server():
 	if Global.multiplayer.connected_to_server.is_connected(_on_connected):
@@ -130,17 +130,21 @@ func _on_reset_button_pressed():
 		await get_tree().create_timer(1.0).timeout
 		status_label.text = "State: connected!"
 
-func save_config(ip: String, port: int):
+func save_config(ip, port, name, color):
 	var config = ConfigFile.new()
 	config.set_value("connection", "ip", ip)
 	config.set_value("connection", "port", port)
-	config.save("user://connection.cfg")
+	config.set_value("player", "name", name)
+	config.set_value("player", "color", color)
+	config.save("user://settings.cfg") 
 
 func load_saved_config():
 	var config = ConfigFile.new()
 	if config.load("user://connection.cfg") == OK:
 		var saved_ip = config.get_value("connection", "ip", "")
 		var saved_port = config.get_value("connection", "port", 4242)
+		var saved_name = config.get_value("player", "name", 4242)
+		var saved_color = config.get_value("player", "color", 4242)
 		ip_line_edit.text = saved_ip
 		port_line_edit.text = str(saved_port)
 	else:
