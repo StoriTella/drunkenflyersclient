@@ -1,11 +1,25 @@
 extends Node
 
+enum CharacterType {
+	WARRIOR,
+	MAGE,
+	ARCHER,
+	PRIEST,
+	DRUID,
+	NANI,
+	VIBE,
+	INVENTOR,
+	BARBARIAN,
+	GUNSLINGUER,
+	WARLOCK,
+	BARD,
+	ARTIFICER
+}
+
 var server_ip = "192.168.1.143"
 var server_port = "4242"
 var connected = false
 var peer = ENetMultiplayerPeer.new()
-var player_name: String = "John Doe"
-var player_color: Color = Color.GREEN
 var is_in_minigame: bool = false
 
 var left_enabled: bool = true
@@ -14,10 +28,15 @@ var up_enabled: bool = true
 var down_enabled: bool = true
 var core_enabled: bool = true
 
+
+var player_name: String = "John Doe"
+var player_color: Color = Color.GREEN
+var player_character: int
+
 func _on_disconnect_button_pressed():
 		disconnect_from_server()
 
-func connect_to_server(ip: String, port: int, name):
+func connect_to_server(ip: String, port: int):
 	
 	multiplayer.connected_to_server.connect(_on_connected)
 	multiplayer.connection_failed.connect(_on_connection_failed)
@@ -49,10 +68,10 @@ func _on_connected():
 	connected = true
 	print("Connected ID: ", multiplayer.get_unique_id())
 	print("player_name: ", player_name)
-	set_player_name_client(player_name)
 	rpc("ping")
 	rpc("set_player_name", player_name)
 	rpc("set_player_color", player_color)
+	rpc("set_player_character", player_character)
 
 func _on_connection_failed():
 	connected = false
@@ -79,6 +98,9 @@ func set_player_name_client(new_player_name: String):
 
 func set_player_color_client(new_player_color: Color):
 	player_color = new_player_color
+
+func set_player_character_client(new_player_character: int):
+	player_character = new_player_character
 
 @rpc("any_peer", "call_remote")
 func ping():
@@ -109,6 +131,8 @@ func normal_coin_sound():
 func normal_damage_sound():
 	play_random_sound(preload("res://assets/damage.mp3"), 0.8, 1.2, 0.8, 1.2)
 
+#Setup server
+
 @rpc("any_peer","call_remote", "reliable")
 func set_player_name(player_name: String):
 	pass
@@ -117,6 +141,10 @@ func set_player_name(player_name: String):
 func set_player_color(player_color: Color):
 	pass
 
+@rpc("any_peer","call_remote", "reliable")
+func set_player_character(player_character: int):
+	pass
+	
 @rpc("any_peer","call_remote", "reliable")
 func add_speed_powerup():
 	pass

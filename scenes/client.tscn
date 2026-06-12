@@ -135,7 +135,11 @@ text = "Quit"
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
+[node name="PlayerCharacterOptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer" unique_id=548275500]
+layout_mode = 2
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="color_changed" from="PanelContainer/VBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="item_selected" from="PanelContainer/VBoxContainer/PlayerCharacterOptionButton" to="." method="_on_player_character_option_button_item_selected"]

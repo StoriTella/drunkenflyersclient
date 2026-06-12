@@ -11,10 +11,12 @@ var server_port = "4242"
 @onready var name_label: LineEdit = $PanelContainer/VBoxContainer/Name
 @onready var exit_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/ExitButton
 @onready var color_picker: ColorPickerButton = $PanelContainer/VBoxContainer/ColorPickerButton
-
+@onready var player_character_button: OptionButton = $PanelContainer/VBoxContainer/PlayerCharacterOptionButton
 var player_color: Color
+var player_character_type: int
 
 func _ready():
+	setup_character_list()
 	load_saved_config()
 	connect_button.pressed.connect(_on_connect_button_pressed)
 	disconnect_button.pressed.connect(_on_disconnect_button_pressed)
@@ -32,12 +34,28 @@ func _ready():
 	ip_line_edit.editable = true
 	port_line_edit.editable = true
 
+func setup_character_list():
+	player_character_button.add_item("Warrior", Global.CharacterType.WARRIOR)
+	player_character_button.add_item("Mage", Global.CharacterType.MAGE)
+	player_character_button.add_item("Archer", Global.CharacterType.ARCHER)
+	player_character_button.add_item("Priest", Global.CharacterType.PRIEST)
+	player_character_button.add_item("Druid", Global.CharacterType.DRUID)
+	player_character_button.add_item("Nani", Global.CharacterType.NANI)
+	player_character_button.add_item("Vibe", Global.CharacterType.VIBE)
+	player_character_button.add_item("Inventor", Global.CharacterType.INVENTOR)
+	player_character_button.add_item("Barbarian", Global.CharacterType.BARBARIAN)
+	player_character_button.add_item("Gunslinger", Global.CharacterType.GUNSLINGUER)
+	player_character_button.add_item("Warlock", Global.CharacterType.WARLOCK)
+	player_character_button.add_item("Bard", Global.CharacterType.BARD)
+	player_character_button.add_item("Artificer", Global.CharacterType.ARTIFICER)
+
 func _on_disconnect_button_pressed():
 		disconnect_from_server()
 
 func _on_connect_button_pressed():
 	Global.set_player_name_client(name_label.text)
 	Global.set_player_color_client(player_color)
+	Global.set_player_character_client(player_character_type)
 	var ip = ip_line_edit.text.strip_edges()
 	var port = int(port_line_edit.text.strip_edges())
 	
@@ -75,7 +93,7 @@ func connect_to_server(ip: String, port: int):
 		return
 	
 	Global.multiplayer.multiplayer_peer = Global.peer
-	save_config(ip, port, name_label.text, player_color)
+	save_config(ip, port, name_label.text, player_color, player_character_type)
 
 func disconnect_from_server():
 	if Global.multiplayer.connected_to_server.is_connected(_on_connected):
@@ -132,8 +150,8 @@ func _on_reset_button_pressed():
 		await get_tree().create_timer(1.0).timeout
 		status_label.text = "State: connected!"
 
-func save_config(ip, port, name, color):
-	Configs.save(ip, port, name, color)
+func save_config(ip, port, name, color, player_character_type):
+	Configs.save(ip, port, name, color, player_character_type)
 
 func load_saved_config():
 	var config = ConfigManager.load()
@@ -142,6 +160,8 @@ func load_saved_config():
 	name_label.text = config["name"]
 	color_picker.color = config["color"]
 	player_color = config["color"]
+	player_character_type = config["player_character_type"]
+	player_character_button.select(player_character_type)
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
@@ -149,3 +169,7 @@ func _on_exit_button_pressed() -> void:
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	player_color = color
+
+
+func _on_player_character_option_button_item_selected(index: int) -> void:
+	player_character_type = index
