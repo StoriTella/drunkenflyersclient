@@ -90,41 +90,22 @@ text = "Power Ups"
 [node name="ShieldButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=371042611]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
-disabled = true
 text = "Shield"
-
-[node name="ShieldTimer" type="Timer" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton" unique_id=1052311304]
-wait_time = 5.0
-autostart = true
 
 [node name="SpeedButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=756137009]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
-disabled = true
 text = "Speed"
-
-[node name="SpeedTimer" type="Timer" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton" unique_id=2042941132]
-wait_time = 5.0
-autostart = true
 
 [node name="DashButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=1001308087]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
-disabled = true
 text = "Dash"
-
-[node name="DashTimer" type="Timer" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton" unique_id=1710225754]
-wait_time = 2.0
-autostart = true
 
 [node name="SpikeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=82594297]
 layout_mode = 2
 theme = ExtResource("2_yqjtg")
-disabled = true
 text = "Spike"
-
-[node name="SpikeTimer" type="Timer" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpikeButton" unique_id=915678862]
-autostart = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1163923241]
 layout_mode = 2
@@ -147,11 +128,7 @@ text = "Disconnect"
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/RightButton" to="." method="_on_right_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/CoreButton" to="." method="_on_core_button_pressed"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton" to="." method="_on_shield_button_pressed"]
-[connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton/ShieldTimer" to="." method="_on_shield_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton" to="." method="_on_speed_button_pressed"]
-[connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton/SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton" to="." method="_on_dash_button_pressed"]
-[connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton/DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpikeButton" to="." method="_on_spike_button_pressed"]
-[connection signal="timeout" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpikeButton/SpikeTimer" to="." method="_on_spike_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/HBoxContainer/Disconnect" to="." method="_on_disconnect_pressed"]

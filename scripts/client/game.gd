@@ -15,40 +15,47 @@ extends Control
 
 func _ready():
 	Global.apply_stored_state()
+	PowerupTimers.apply_stored_state()
 
 func _on_disconnect_pressed() -> void:
 	Global.disconnect_from_server()
 	get_tree().change_scene_to_file("res://scenes/client.tscn")
 
+#PowerUps
+
 func _on_shield_button_pressed() -> void:
 	shield_button.disabled = true
+	PowerupTimers.start_shield()
 	get_tree().change_scene_to_file("res://scenes/minigames/ButtonSmash.tscn")
-
 
 func _on_speed_button_pressed() -> void:
 	speed_button.disabled = true
+	PowerupTimers.start_speed()
 	get_tree().change_scene_to_file("res://scenes/minigames/Agitate.tscn")
 
 func _on_dash_button_pressed() -> void:
 	speed_button.disabled = true
+	PowerupTimers.start_dash()
 	get_tree().change_scene_to_file("res://scenes/minigames/Slide.tscn")
 
 func _on_spike_button_pressed() -> void:
 	spike_button.disabled = true
+	PowerupTimers.start_spike()
 	get_tree().change_scene_to_file("res://scenes/minigames/Spike.tscn")
 
-func _on_speed_timer_timeout() -> void:
-	speed_button.disabled = false
+func set_shield_button_enabled(enabled: bool):
+	shield_button.disabled = not enabled
 
-func _on_shield_timer_timeout() -> void:
-	shield_button.disabled = false
+func set_speed_button_enabled(enabled: bool):
+	speed_button.disabled = not enabled
 
-func _on_dash_timer_timeout() -> void:
-	dash_button.disabled = false
+func set_dash_button_enabled(enabled: bool):
+	dash_button.disabled = not enabled
 
-func _on_spike_timer_timeout() -> void:
-	spike_button.disabled = false
+func set_spike_button_enabled(enabled: bool):
+	spike_button.disabled = not enabled
 
+#Controls:
 func set_left_enabled_button(enabled: bool):
 	left_button.disabled = enabled
 
