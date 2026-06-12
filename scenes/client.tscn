@@ -47,9 +47,6 @@ default_font_size = 72
 [sub_resource type="Theme" id="Theme_1ssov"]
 default_font_size = 72
 
-[sub_resource type="Theme" id="Theme_i2t61"]
-default_font_size = 72
-
 [node name="ClientRoot" type="Panel" unique_id=723361514]
 anchors_preset = 15
 anchor_right = 1.0
@@ -120,11 +117,6 @@ text = "Connect"
 layout_mode = 2
 theme = SubResource("Theme_1ssov")
 text = "Disconnect"
-
-[node name="ResetButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1451283164]
-layout_mode = 2
-theme = SubResource("Theme_i2t61")
-text = "Reset"
 
 [node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=484890156]
 layout_mode = 2

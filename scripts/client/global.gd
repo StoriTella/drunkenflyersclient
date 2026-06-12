@@ -258,4 +258,4 @@ func apply_stored_state():
 		game.set_right_enabled_button(right_enabled)
 		game.set_up_enabled_button(up_enabled)
 		game.set_down_enabled_button(down_enabled)
-		#change game.set_core_enabled_button(core_enabled)
+		game.set_core_enabled_button(core_enabled)
