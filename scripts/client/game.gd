@@ -84,4 +84,4 @@ func _on_right_button_pressed() -> void:
 	Global.rpc("repair_systems_right")
 
 func _on_core_button_pressed() -> void:
-	Global.rpc("repair_systems_core")
+	get_tree().change_scene_to_file("res://scenes/minigames/CoreMinigame.tscn")
