@@ -2,20 +2,23 @@ extends Control
 
 @onready var disconnect_button = $PanelContainer/HBoxContainer/Disconnect
 
-@onready var up_button = $PanelContainer/HBoxContainer/VBoxContainerControls/UpButton
-@onready var down_button = $PanelContainer/HBoxContainer/VBoxContainerControls/DownButton
-@onready var left_button = $PanelContainer/HBoxContainer/VBoxContainerControls/LeftButton
-@onready var right_button = $PanelContainer/HBoxContainer/VBoxContainerControls/RightButton
-@onready var core_button = $PanelContainer/HBoxContainer/VBoxContainerControls/CoreButton
+@onready var up_button = $LeftPanel/UpButton
+@onready var down_button = $LeftPanel/DownButton
+@onready var left_button = $LeftPanel/LeftButton
+@onready var right_button = $LeftPanel/RightButton
+@onready var core_button = $LeftPanel/CoreButton
 
-@onready var shield_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton
-@onready var speed_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton
-@onready var dash_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton
-@onready var spike_button = $PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpikeButton
+@onready var shield_button = $RightPanel/VBoxContainer/ShieldButton
+@onready var speed_button = $RightPanel/VBoxContainer/SpeedButton
+@onready var dash_button = $RightPanel/VBoxContainer/DashButton
+@onready var spike_button = $RightPanel/VBoxContainer/SpikeButton
+
+@onready var background: ColorRect = $Background
 
 func _ready():
 	Global.apply_stored_state()
 	PowerupTimers.apply_stored_state()
+	background.color = Global.player_color
 
 func _on_disconnect_pressed() -> void:
 	Global.reset_stored_state()

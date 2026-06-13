@@ -1,134 +1,201 @@
 [gd_scene format=3 uid="uid://dv3ldc84l28k1"]
 
 [ext_resource type="Script" uid="uid://b3fov87g8v8x0" path="res://scripts/client/game.gd" id="1_uwrxv"]
-[ext_resource type="Theme" uid="uid://bbsb0mwr08726" path="res://assets/themes/ButtonThemes.tres" id="2_yqjtg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqjtg"]
-content_margin_left = 100.0
-content_margin_top = 100.0
-content_margin_right = 100.0
-content_margin_bottom = 100.0
-bg_color = Color(0.9618922, 0.30210367, 0.68868446, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_uwrxv"]
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_yqjtg")
+[ext_resource type="Texture2D" uid="uid://digglfwcx3a0m" path="res://assets/cockpit/background.jpg" id="2_iywne"]
+[ext_resource type="Theme" uid="uid://c7ijkgkgfhfwm" path="res://assets/themes/directional_pad_theme.tres" id="3_p57ef"]
+[ext_resource type="Texture2D" uid="uid://d3imq83sr688g" path="res://assets/cockpit/directionalPad.png" id="4_u5sy4"]
+[ext_resource type="Theme" uid="uid://dxo4x15i7sbwp" path="res://assets/themes/cockpit_theme.tres" id="5_iywne"]
 
 [node name="Game" type="Control" unique_id=1867825606]
+custom_minimum_size = Vector2(1820, 980)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -5.0
-offset_bottom = -2.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uwrxv")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1799629793]
+[node name="Background" type="ColorRect" parent="." unique_id=1668473570]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -636.0
+offset_top = -481.0
+offset_right = 951.0
+offset_bottom = 580.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=528940406]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_uwrxv")
+texture = ExtResource("2_iywne")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=544835247]
-layout_mode = 2
+[node name="LeftPanel" type="Control" parent="." unique_id=2074075588]
+custom_minimum_size = Vector2(810, 490)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 960.0
+grow_vertical = 2
+size_flags_horizontal = 0
+theme = ExtResource("3_p57ef")
 
-[node name="VBoxContainerControls" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=158121040]
-layout_mode = 2
+[node name="DirectionalPadTextureRect" type="TextureRect" parent="LeftPanel" unique_id=918545610]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_p57ef")
+texture = ExtResource("4_u5sy4")
 
-[node name="ControlsLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=246515799]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
-text = "Controls"
-
-[node name="UpButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=897129798]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
+[node name="UpButton" type="Button" parent="LeftPanel" unique_id=897129798]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 300.0
+grow_horizontal = 2
 disabled = true
 text = "Up"
 
-[node name="DownButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=315603036]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
+[node name="DownButton" type="Button" parent="LeftPanel" unique_id=315603036]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -300.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
 disabled = true
 text = "Down"
 
-[node name="LeftButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=1778444702]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
+[node name="LeftButton" type="Button" parent="LeftPanel" unique_id=1778444702]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -150.0
+offset_right = 300.0
+offset_bottom = 150.0
+grow_vertical = 2
 disabled = true
 text = "Left"
 
-[node name="RightButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=647054652]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
+[node name="RightButton" type="Button" parent="LeftPanel" unique_id=647054652]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -150.0
+offset_bottom = 150.0
+grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 text = "Right"
 
-[node name="CoreButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerControls" unique_id=1546187311]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
+[node name="CoreButton" type="Button" parent="LeftPanel" unique_id=1546187311]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -160.5
+offset_right = 150.0
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
 disabled = true
 text = "Core"
 
-[node name="VBoxContainerPowerUps" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=138200139]
-layout_mode = 2
+[node name="RightPanel" type="Control" parent="." unique_id=960138206]
+custom_minimum_size = Vector2(860, 515)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("5_iywne")
 
-[node name="PowerUpsLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=953102422]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
-text = "Power Ups"
-
-[node name="ShieldButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=371042611]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
-text = "Shield"
-
-[node name="SpeedButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=756137009]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
-text = "Speed"
-
-[node name="DashButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=1001308087]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
-text = "Dash"
-
-[node name="SpikeButton" type="Button" parent="PanelContainer/HBoxContainer/VBoxContainerPowerUps" unique_id=82594297]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
-text = "Spike"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=1163923241]
-layout_mode = 2
-
-[node name="StatsLabel" type="Label" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1894205979]
-layout_mode = 2
-theme = ExtResource("2_yqjtg")
-text = "Stats"
-
-[node name="Disconnect" type="Button" parent="PanelContainer/HBoxContainer" unique_id=1652637947]
+[node name="Disconnect" type="Button" parent="RightPanel" unique_id=1652637947]
 custom_minimum_size = Vector2(100, 50)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -330.0
+offset_top = -126.0
+offset_right = 3.0
+offset_bottom = -45.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
-size_flags_vertical = 0
+size_flags_vertical = 8
 text = "Disconnect"
 
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/UpButton" to="." method="_on_up_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/DownButton" to="." method="_on_down_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/LeftButton" to="." method="_on_left_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/RightButton" to="." method="_on_right_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerControls/CoreButton" to="." method="_on_core_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/ShieldButton" to="." method="_on_shield_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpeedButton" to="." method="_on_speed_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/DashButton" to="." method="_on_dash_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/VBoxContainerPowerUps/SpikeButton" to="." method="_on_spike_button_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/Disconnect" to="." method="_on_disconnect_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel" unique_id=1640251393]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -333.0
+offset_top = 85.0
+offset_bottom = -204.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="ShieldButton" type="Button" parent="RightPanel/VBoxContainer" unique_id=371042611]
+layout_mode = 2
+text = "Shield"
+
+[node name="SpeedButton" type="Button" parent="RightPanel/VBoxContainer" unique_id=756137009]
+layout_mode = 2
+text = "Speed"
+
+[node name="DashButton" type="Button" parent="RightPanel/VBoxContainer" unique_id=1001308087]
+layout_mode = 2
+text = "Dash"
+
+[node name="SpikeButton" type="Button" parent="RightPanel/VBoxContainer" unique_id=82594297]
+layout_mode = 2
+text = "Cannon"
+
+[connection signal="pressed" from="LeftPanel/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="LeftPanel/DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="pressed" from="LeftPanel/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="LeftPanel/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="LeftPanel/CoreButton" to="." method="_on_core_button_pressed"]
+[connection signal="pressed" from="RightPanel/Disconnect" to="." method="_on_disconnect_pressed"]
+[connection signal="pressed" from="RightPanel/VBoxContainer/ShieldButton" to="." method="_on_shield_button_pressed"]
+[connection signal="pressed" from="RightPanel/VBoxContainer/SpeedButton" to="." method="_on_speed_button_pressed"]
+[connection signal="pressed" from="RightPanel/VBoxContainer/DashButton" to="." method="_on_dash_button_pressed"]
+[connection signal="pressed" from="RightPanel/VBoxContainer/SpikeButton" to="." method="_on_spike_button_pressed"]

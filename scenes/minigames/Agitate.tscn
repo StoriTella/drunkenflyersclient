@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjd54iomxgwx5"]
 
 [ext_resource type="Script" uid="uid://cr2ehwc1b14vu" path="res://scripts/minigames/agitate.gd" id="1_emng5"]
-[ext_resource type="AudioStream" uid="uid://r0aoaykbwwin" path="res://assets/powerups_sounds/speed_minigame.mp3" id="2_r6akm"]
+[ext_resource type="AudioStream" uid="uid://d2pkghnbga3eg" path="res://assets/powerups_sounds/rema.mp3" id="2_r6akm"]
 
 [sub_resource type="Theme" id="Theme_emng5"]
 default_font_size = 200
