@@ -12,6 +12,7 @@ var balls_clicked: int = 0
 var total_balls: int = 0
 var ball_list: Array = []
 var screen_size: Vector2
+var is_complete: bool = false
 
 func _ready():
 	start_minigame()
@@ -66,7 +67,9 @@ func _on_ball_pressed(ball: Button):
 		score_label.text = "Minis: " + str(balls_clicked) + "/" + str(total_balls)
 		
 		if balls_clicked >= total_balls:
-			Minigames.complete_minigame(true)
+			is_complete = true
+			SoundEffects.win_minigame_sound()
+			Minigames.complete_minigame()
 			Global.rpc("repair_systems_core")
 
 func _process(delta):
@@ -88,4 +91,6 @@ func _process(delta):
 		ball.position = new_pos
 
 func _on_timer_timeout():
-	Minigames.complete_minigame(false)
+	if is_complete:
+		return
+	Minigames.lose_minigame_sound()

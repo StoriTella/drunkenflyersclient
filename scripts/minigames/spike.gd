@@ -14,6 +14,7 @@ var circle_completing: bool = false
 @onready var line: Line2D = $Line2D
 @onready var status_label: Label = $StatusLabel
 @onready var timer: Timer = $Timer
+var is_complete: bool = false
 
 func _ready():
 	Global.is_in_minigame = true
@@ -68,7 +69,10 @@ func complete_circle():
 	update_status_label()
 	
 	if circles_completed >= required_circles:
-		complete_minigame()
+		Global.rpc("spike_powerup")
+		is_complete = true
+		SoundEffects.spike_minigame_finnish_sound()
+		Minigames.complete_minigame()
 	else:
 		show_circle_complete()
 		await get_tree().create_timer(0.2).timeout
@@ -94,9 +98,8 @@ func update_status_label():
 func end_draw():
 	is_drawing = false
 
-func complete_minigame():
-	Global.rpc("spike_powerup")
-	Minigames.complete_minigame(true)
-
 func _on_timer_timeout() -> void:
-	Minigames.complete_minigame(false)
+	if is_complete:
+		return
+	SoundEffects.lose_minigame_sound()
+	Minigames.complete_minigame()

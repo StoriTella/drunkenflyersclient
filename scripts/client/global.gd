@@ -28,10 +28,13 @@ var up_enabled: bool = true
 var down_enabled: bool = true
 var core_enabled: bool = true
 
-
 var player_name: String = "John Doe"
 var player_color: Color = Color.GREEN
 var player_character: int
+
+#Sound
+@export var sound_cooldown_ms: int = 1000
+var last_sound_time: int = 0
 
 func _on_disconnect_button_pressed():
 		disconnect_from_server()
@@ -120,19 +123,54 @@ func reset_orientation():
 
 @rpc("any_peer","call_remote", "reliable")
 func vibrate_player(duration_ms: int):
-	print("Vibrar: ", duration_ms, "ms")
 	Input.vibrate_handheld(duration_ms)
 
+#Sounds
 @rpc("any_peer","call_remote", "reliable")
 func normal_coin_sound():
-	play_random_sound(preload("res://assets/coin.mp3"), 0.8, 1.2, 0.8, 1.2)
+	var now = Time.get_ticks_msec()
+	if now - last_sound_time < sound_cooldown_ms:
+		return
+	last_sound_time = now
+	SoundEffects.play_random_sound(preload("res://assets/coin.mp3"))
 
-@rpc("any_peer","call_remote", "reliable")
-func normal_damage_sound():
-	play_random_sound(preload("res://assets/damage.mp3"), 0.8, 1.2, 0.8, 1.2)
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_base_ball_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_base_ball_sound.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_anvil_ball_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_anvil_ball_sound.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_balao_sao_joao_ball_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_balao_sao_joao_ball_sound.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_boomerang_ball_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_boomerang_ball_sound.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_explosion_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_explosion_sound.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_polen_ball_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_polen_ball_sound.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_tumbleweed_ball_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_tumbleweed_ball_sound.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_spike_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_spike_sound.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
+func core_disabled_sound():
+	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/core_disabled_sound.mp3"))
 
 #Setup server
-
 @rpc("any_peer","call_remote", "reliable")
 func set_player_name(player_name: String):
 	pass
@@ -157,18 +195,6 @@ func add_shield_powerup():
 func nuclear_missile_powerup():
 	pass
 
-func play_random_sound(sound: AudioStream, pitch_min: float, pitch_max: float, speed_min: float, speed_max: float):
-	var player = AudioStreamPlayer2D.new()
-	
-	player.stream = sound
-	
-	player.pitch_scale = randf_range(pitch_min, pitch_max)
-	
-	add_child(player)
-	player.play()
-	
-	await get_tree().create_timer(player.stream.get_length() / player.pitch_scale).timeout
-	player.queue_free()
 
 
 #system movement and core

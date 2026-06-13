@@ -5,6 +5,7 @@ extends Control
 @export var required_shakes_max: int = 100
 @export var shake_timeout: float = 0.2
 
+@onready var music_player = $AudioStreamPlayer
 @onready var timer: Timer = $Timer
 @onready var progress_bar = $ProgressBar
 @onready var label = $Label
@@ -16,6 +17,7 @@ var last_accel: Vector3 = Vector3.ZERO
 var is_complete: bool = false
 
 func _ready():
+	music_player.play()
 	Minigames.is_in_minigame(true)
 	last_accel = Input.get_accelerometer()
 	required_shakes = randi_range(required_shakes_min, required_shakes_max)
@@ -45,11 +47,15 @@ func _process(delta):
 		
 		if shake_count >= required_shakes:
 			is_complete = true
-			Minigames.complete_minigame(true)
+			SoundEffects.speed_minigame_finnish_sound()
+			Minigames.complete_minigame()
 			Global.rpc("add_speed_powerup")
 	
 	last_accel = current_accel
 
-
 func _on_timer_timeout() -> void:
-	Minigames.complete_minigame(false)
+	if is_complete:
+		return
+	music_player.stop()
+	SoundEffects.lose_minigame_sound()
+	Minigames.complete_minigame()

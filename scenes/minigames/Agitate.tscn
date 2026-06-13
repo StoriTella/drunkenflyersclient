@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cjd54iomxgwx5"]
 
 [ext_resource type="Script" uid="uid://cr2ehwc1b14vu" path="res://scripts/minigames/agitate.gd" id="1_emng5"]
+[ext_resource type="AudioStream" uid="uid://r0aoaykbwwin" path="res://assets/powerups_sounds/speed_minigame.mp3" id="2_r6akm"]
 
 [sub_resource type="Theme" id="Theme_emng5"]
 default_font_size = 200
@@ -43,5 +44,9 @@ offset_bottom = 315.0
 grow_horizontal = 2
 theme = SubResource("Theme_emng5")
 text = "Shake!!!!"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1541178389]
+stream = ExtResource("2_r6akm")
+parameters/looping = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

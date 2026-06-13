@@ -10,6 +10,7 @@ extends Control
 var swipe_start: Vector2 = Vector2.ZERO
 var swipe_end: Vector2 = Vector2.ZERO
 var is_swiping: bool = false
+var is_complete: bool = false
 
 func _ready():
 	Global.is_in_minigame = true
@@ -37,7 +38,9 @@ func process_swipe():
 	var final_force = dash_force * dash_power
 	
 	Global.rpc("perform_dash", swipe_direction, final_force)
-	Minigames.complete_minigame(true)
+	is_complete = true
+	SoundEffects.dash_minigame_finnish_sound()
+	Minigames.complete_minigame()
 
 func update_swipe_preview(current_pos: Vector2):
 	line.clear_points()
@@ -45,4 +48,7 @@ func update_swipe_preview(current_pos: Vector2):
 	line.add_point(current_pos)
 
 func _on_timer_timeout() -> void:
-	Minigames.complete_minigame(false)
+	if is_complete:
+		return
+	SoundEffects.lose_minigame_sound()
+	Minigames.complete_minigame()

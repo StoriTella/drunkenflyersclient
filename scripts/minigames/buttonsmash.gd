@@ -8,6 +8,7 @@ extends Control
 @export var button_theme: Theme = preload("res://assets/themes/button_smash.tres")
 
 @onready var timer: Timer = $Timer
+var is_complete: bool = false
 
 var buttons_clicked: int = 0
 var total_buttons: int = 0
@@ -47,7 +48,9 @@ func _on_button_pressed(button: Button):
 	buttons_clicked += 1
 	
 	if buttons_clicked >= total_buttons:
-		Minigames.complete_minigame(true)
+		is_complete = true
+		Minigames.complete_minigame()
+		SoundEffects.shield_minigame_finnish_sound()
 		Global.rpc("add_shield_powerup")
 
 func clear_buttons():
@@ -57,4 +60,5 @@ func clear_buttons():
 
 
 func _on_timer_timeout() -> void:
-	Minigames.complete_minigame(false)
+	SoundEffects.lose_minigame_sound()
+	Minigames.complete_minigame()
