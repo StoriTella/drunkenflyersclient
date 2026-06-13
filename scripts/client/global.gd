@@ -33,7 +33,7 @@ var player_color: Color = Color.GREEN
 var player_character: int
 
 #Sound
-@export var sound_cooldown_ms: int = 1000
+@export var sound_cooldown_ms: int = 500
 var last_sound_time: int = 0
 
 func _on_disconnect_button_pressed():
@@ -168,7 +168,7 @@ func hit_by_spike_sound():
 
 @rpc("any_peer", "call_remote", "reliable")
 func core_disabled_sound():
-	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/core_disabled_sound.mp3"))
+	SoundEffects.start_core_fire_sound()
 
 #Setup server
 @rpc("any_peer","call_remote", "reliable")

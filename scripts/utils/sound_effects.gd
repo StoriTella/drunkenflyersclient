@@ -5,6 +5,7 @@ extends Node
 @export var pitch_max: float = 1.2
 @export var speed_min: float = 0.8
 @export var speed_max: float = 1.2
+var core_fire_sound: AudioStreamPlayer
 
 func win_minigame_sound():
 	play_random_sound(preload("res://assets/win_minigame.mp3"))
@@ -23,6 +24,25 @@ func spike_minigame_finnish_sound():
 
 func shield_minigame_finnish_sound():
 	play_random_sound(preload("res://assets/powerups_sounds/spikes.mp3"))
+
+func drink_sound():
+	play_random_sound(preload("res://assets/minigames/drink.mp3"))
+
+func burp_sound():
+	play_random_sound(preload("res://assets/minigames/burp.mp3"))
+
+func water_sound():
+	play_random_sound(preload("res://assets/minigames/water_bucket.mp3"))
+
+func start_core_fire_sound():
+	core_fire_sound = AudioStreamPlayer.new()
+	core_fire_sound.stream = preload("res://assets/fire.mp3")
+	core_fire_sound.volume_db = 0   # ou ajusta conforme necessário
+	add_child(core_fire_sound)
+
+func stop_core_fire_sound():
+	if core_fire_sound and not core_fire_sound.playing:
+		core_fire_sound.play()
 
 func play_random_sound(sound: AudioStream):
 	var player = AudioStreamPlayer2D.new()

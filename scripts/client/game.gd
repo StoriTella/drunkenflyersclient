@@ -10,7 +10,6 @@ extends Control
 
 @onready var shield_button = $RightPanel/VBoxContainer/ShieldButton
 @onready var speed_button = $RightPanel/VBoxContainer/SpeedButton
-@onready var dash_button = $RightPanel/VBoxContainer/DashButton
 @onready var spike_button = $RightPanel/VBoxContainer/SpikeButton
 
 @onready var background: ColorRect = $Background
@@ -30,31 +29,23 @@ func _on_disconnect_pressed() -> void:
 func _on_shield_button_pressed() -> void:
 	shield_button.disabled = true
 	PowerupTimers.start_shield()
-	get_tree().change_scene_to_file("res://scenes/minigames/ButtonSmash.tscn")
+	get_tree().change_scene_to_file("res://scenes/minigames/Shield.tscn")
 
 func _on_speed_button_pressed() -> void:
 	speed_button.disabled = true
 	PowerupTimers.start_speed()
-	get_tree().change_scene_to_file("res://scenes/minigames/Agitate.tscn")
-
-func _on_dash_button_pressed() -> void:
-	speed_button.disabled = true
-	PowerupTimers.start_dash()
-	get_tree().change_scene_to_file("res://scenes/minigames/Slide.tscn")
+	get_tree().change_scene_to_file("res://scenes/minigames/Speed.tscn")
 
 func _on_spike_button_pressed() -> void:
 	spike_button.disabled = true
 	PowerupTimers.start_spike()
-	get_tree().change_scene_to_file("res://scenes/minigames/Spike.tscn")
+	get_tree().change_scene_to_file("res://scenes/minigames/Cannon.tscn")
 
 func set_shield_button_enabled(enabled: bool):
 	shield_button.disabled = not enabled
 
 func set_speed_button_enabled(enabled: bool):
 	speed_button.disabled = not enabled
-
-func set_dash_button_enabled(enabled: bool):
-	dash_button.disabled = not enabled
 
 func set_spike_button_enabled(enabled: bool):
 	spike_button.disabled = not enabled

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://p5l7lnxohqb6"]
 
+[ext_resource type="Theme" uid="uid://cn7xgpeml4avt" path="res://assets/themes/minigame_theme.tres" id="1_k20ua"]
 [ext_resource type="Script" uid="uid://bkidgn0a80kxl" path="res://scripts/minigames/core_minigame.gd" id="1_yb6ud"]
+[ext_resource type="Texture2D" uid="uid://bw80ehylap2oq" path="res://assets/minigames/core_minigame_background.jpg" id="3_bs5lh"]
 
 [sub_resource type="Theme" id="Theme_emng5"]
 default_font_size = 200
@@ -12,7 +14,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_k20ua")
 script = ExtResource("1_yb6ud")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=64105567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_bs5lh")
 
 [node name="Timer" type="Timer" parent="." unique_id=1936163062]
 wait_time = 25.0
@@ -22,12 +34,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -404.0
-offset_top = 42.0
-offset_right = 399.0
-offset_bottom = 315.0
+offset_left = -934.0
+offset_right = 929.0
+offset_bottom = 273.0
 grow_horizontal = 2
 theme = SubResource("Theme_emng5")
-text = "ROTATE!!!!"
+text = "Test"
+horizontal_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

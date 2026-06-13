@@ -8,6 +8,8 @@ extends Control
 @onready var timer: Timer = $Timer
 @onready var score_label = $ScoreLabel
 
+@export var ball_asset = load("res://assets/minigames/water_bucket.png")
+
 var balls_clicked: int = 0
 var total_balls: int = 0
 var ball_list: Array = []
@@ -22,7 +24,7 @@ func start_minigame():
 	screen_size = get_viewport().get_visible_rect().size
 	total_balls = randi_range(min_ball_count, max_ball_count)
 	balls_clicked = 0
-	score_label.text = "Minis: 0/" + str(total_balls)
+	score_label.text = "Water Buckets: 0/" + str(total_balls)
 	create_balls()
 	timer.start()
 
@@ -39,7 +41,7 @@ func create_balls():
 		ball.add_theme_stylebox_override("normal", style)
 		
 		var sprite = Sprite2D.new()
-		sprite.texture = load("res://assets/minigames/ball.webp")
+		sprite.texture = ball_asset
 		var texture_size = sprite.texture.get_size()
 		var scale_x = ball_size / texture_size.x
 		var scale_y = ball_size / texture_size.y
@@ -61,14 +63,15 @@ func create_balls():
 
 func _on_ball_pressed(ball: Button):
 	if ball in ball_list:
+		SoundEffects.water_sound()
 		ball_list.erase(ball)
 		ball.queue_free()
 		balls_clicked += 1
-		score_label.text = "Minis: " + str(balls_clicked) + "/" + str(total_balls)
+		score_label.text = "Water Buckets: " + str(balls_clicked) + "/" + str(total_balls)
 		
 		if balls_clicked >= total_balls:
 			is_complete = true
-			SoundEffects.win_minigame_sound()
+			SoundEffects.stop_core_fire_sound()
 			Minigames.complete_minigame()
 			Global.rpc("repair_systems_core")
 

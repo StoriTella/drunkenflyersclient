@@ -181,10 +181,6 @@ text = "Shield"
 layout_mode = 2
 text = "Speed"
 
-[node name="DashButton" type="Button" parent="RightPanel/VBoxContainer" unique_id=1001308087]
-layout_mode = 2
-text = "Dash"
-
 [node name="SpikeButton" type="Button" parent="RightPanel/VBoxContainer" unique_id=82594297]
 layout_mode = 2
 text = "Cannon"
@@ -197,5 +193,4 @@ text = "Cannon"
 [connection signal="pressed" from="RightPanel/Disconnect" to="." method="_on_disconnect_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/ShieldButton" to="." method="_on_shield_button_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/SpeedButton" to="." method="_on_speed_button_pressed"]
-[connection signal="pressed" from="RightPanel/VBoxContainer/DashButton" to="." method="_on_dash_button_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/SpikeButton" to="." method="_on_spike_button_pressed"]

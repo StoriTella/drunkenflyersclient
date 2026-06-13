@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3x8dq3m1dcnq"]
 
-[ext_resource type="Script" uid="uid://buvrvuefsxq5u" path="res://scripts/minigames/spike.gd" id="1_ukgkm"]
+[ext_resource type="Script" uid="uid://buvrvuefsxq5u" path="res://scripts/minigames/cannon.gd" id="1_ukgkm"]
 
 [sub_resource type="Theme" id="Theme_ukgkm"]
 default_font_size = 200

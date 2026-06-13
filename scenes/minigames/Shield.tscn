@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ckn2nt3isn713"]
+
+[ext_resource type="Theme" uid="uid://cn7xgpeml4avt" path="res://assets/themes/minigame_theme.tres" id="1_8p378"]
+[ext_resource type="Script" uid="uid://bh1okk7ojg2c3" path="res://scripts/minigames/shield.gd" id="1_c2adm"]
+[ext_resource type="Texture2D" uid="uid://8qitr22knxbn" path="res://assets/minigames/shield_background.jpg" id="2_8p378"]
+
+[node name="Shield" type="Control" unique_id=1653149477]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_8p378")
+script = ExtResource("1_c2adm")
+
+[node name="Timer" type="Timer" parent="." unique_id=711869509]
+wait_time = 10.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1537522045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_8p378")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=442717069]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 222.0
+grow_horizontal = 2
+text = "DRINK"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
