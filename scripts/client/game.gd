@@ -18,6 +18,7 @@ func _ready():
 	PowerupTimers.apply_stored_state()
 
 func _on_disconnect_pressed() -> void:
+	Global.reset_stored_state()
 	Global.disconnect_from_server()
 	get_tree().change_scene_to_file("res://scenes/client.tscn")
 
