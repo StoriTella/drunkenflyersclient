@@ -25,6 +25,9 @@ func spike_minigame_finnish_sound():
 func shield_minigame_finnish_sound():
 	play_random_sound(preload("res://assets/powerups_sounds/spikes.mp3"))
 
+func cannonball_shoot_sound():
+	play_random_sound(preload("res://assets/powerups_sounds/cannonball_shoot.mp3"))
+
 func drink_sound():
 	play_random_sound(preload("res://assets/minigames/drink.mp3"))
 

@@ -65,5 +65,6 @@ func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	is_complete = true
 	var final_force = velocity.length()
 	var swipe_direction = velocity.normalized()
+	SoundEffects.cannonball_shoot_sound()
 	Global.rpc("cannonball_powerup", swipe_direction, final_force)
 	Minigames.complete_minigame()

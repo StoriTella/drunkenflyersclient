@@ -13,7 +13,7 @@ var server_port = "4242"
 @onready var color_picker: ColorPickerButton = $PanelContainer/VBoxContainer/ColorPickerButton
 @onready var player_character_button: OptionButton = $PanelContainer/VBoxContainer/PlayerCharacterOptionButton
 var player_color: Color
-var player_character_type: int
+var player_character_type: int = 0
 
 func _ready():
 	setup_character_list()
