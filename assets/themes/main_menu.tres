@@ -1,6 +1,7 @@
-[gd_resource type="Theme" format=3 uid="uid://c7ijkgkgfhfwm"]
+[gd_resource type="Theme" format=3 uid="uid://dega6q6aoywnb"]
 
 [ext_resource type="FontFile" uid="uid://kkifsidkncfn" path="res://assets/fonts/oh-whale-font/Ohwhale-6Ozo.otf" id="1_es56c"]
+[ext_resource type="FontFile" uid="uid://c1in8m8dlijv3" path="res://assets/fonts/oh-whale-font/OhWhale-oYZq.ttf" id="2_lru3c"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn2r3"]
 
@@ -22,6 +23,12 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lru3c"]
+bg_color = Color(0.7318466, 0.0033035022, 0.9964965, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hahhc"]
+bg_color = Color(0.73333335, 0.003921569, 0.99607843, 0.45882353)
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
@@ -48,3 +55,12 @@ Button/styles/focus = SubResource("StyleBoxEmpty_wdqdr")
 Button/styles/hover = SubResource("StyleBoxEmpty_es56c")
 Button/styles/normal = SubResource("StyleBoxFlat_18qmp")
 Button/styles/pressed = SubResource("StyleBoxFlat_tmngq")
+ColorPickerButton/font_sizes/font_size = 16
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 72
+Label/fonts/font = ExtResource("1_es56c")
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/fonts/font = ExtResource("2_lru3c")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_lru3c")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_hahhc")

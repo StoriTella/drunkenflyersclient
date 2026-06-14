@@ -3,15 +3,18 @@ extends Control
 var server_ip = "192.168.1.143"
 var server_port = "4242"
 
-@onready var ip_line_edit: LineEdit = $PanelContainer/VBoxContainer/HBoxContainerIP/IpLineEdit
-@onready var port_line_edit: LineEdit = $PanelContainer/VBoxContainer/HBoxContainerPorta/PortLineEdit
-@onready var connect_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/ConnectButton
-@onready var disconnect_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/DisconnectButton
-@onready var status_label: Label = $PanelContainer/VBoxContainer/StatusLabel
-@onready var name_label: LineEdit = $PanelContainer/VBoxContainer/Name
-@onready var exit_button: Button = $PanelContainer/VBoxContainer/HBoxContainer/ExitButton
-@onready var color_picker: ColorPickerButton = $PanelContainer/VBoxContainer/ColorPickerButton
-@onready var player_character_button: OptionButton = $PanelContainer/VBoxContainer/PlayerCharacterOptionButton
+@onready var ip_line_edit: LineEdit = $VBoxContainer/HBoxContainerIP/IpLineEdit
+@onready var port_line_edit: LineEdit = $VBoxContainer/HBoxContainerPorta/PortLineEdit
+@onready var connect_button: Button = $VBoxContainer/HBoxContainer/ConnectButton
+@onready var disconnect_button: Button = $VBoxContainer/HBoxContainer/DisconnectButton
+@onready var status_label: Label = $VBoxContainer/StatusLabel
+@onready var name_label: LineEdit = $VBoxContainer/Name
+@onready var exit_button: Button = $VBoxContainer/HBoxContainer/ExitButton
+@onready var color_picker: ColorPickerButton = $VBoxContainer/ColorPickerButton
+@onready var player_character_button: OptionButton = $VBoxContainer/PlayerCharacterOptionButton
+@onready var background: ColorRect = $Background
+@onready var boat_preview: Sprite2D = $BoatPreview
+
 var player_color: Color
 var player_character_type: int = 0
 
@@ -162,6 +165,8 @@ func load_saved_config():
 	player_color = config["color"]
 	player_character_type = config["player_character_type"]
 	player_character_button.select(player_character_type)
+	background.color = player_color
+	boat_preview.modulate = player_color
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
@@ -169,6 +174,8 @@ func _on_exit_button_pressed() -> void:
 
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	player_color = color
+	background.color = color
+	boat_preview.modulate = color
 
 
 func _on_player_character_option_button_item_selected(index: int) -> void:

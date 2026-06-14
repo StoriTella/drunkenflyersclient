@@ -12,10 +12,13 @@ var is_complete: bool = false
 var ball_radius = 32
 
 func _ready():
+	Minigames.is_in_minigame(true)
 	if ball.has_node("CollisionShape2D"):
 		var shape = ball.get_node("CollisionShape2D").shape
 		if shape is CircleShape2D:
 			ball_radius = shape.radius
+	var screen_center = get_viewport().get_visible_rect().size / 2
+	ball.position = screen_center
 
 func _process(delta):
 	if not dragging and velocity.length() > 0:

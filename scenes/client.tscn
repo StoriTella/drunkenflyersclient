@@ -1,42 +1,16 @@
 [gd_scene format=3 uid="uid://cfyu3kpjs52lo"]
 
 [ext_resource type="Script" uid="uid://d25apyad23oi6" path="res://scripts/client/client.gd" id="1_5f806"]
+[ext_resource type="Theme" uid="uid://dega6q6aoywnb" path="res://assets/themes/main_menu.tres" id="1_r26j7"]
 [ext_resource type="Theme" uid="uid://bbsb0mwr08726" path="res://assets/themes/ButtonThemes.tres" id="2_1t5vp"]
-
-[sub_resource type="Theme" id="Theme_5f806"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5f806"]
-content_margin_left = 100.0
-content_margin_top = 100.0
-content_margin_right = 100.0
-content_margin_bottom = 100.0
-bg_color = Color(0.9618922, 0.30210367, 0.68868446, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_4tr0r"]
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_5f806")
-
-[sub_resource type="Theme" id="Theme_8hduq"]
-default_font_size = 72
-
-[sub_resource type="LabelSettings" id="LabelSettings_g6rob"]
-font_size = 72
+[ext_resource type="Texture2D" uid="uid://digglfwcx3a0m" path="res://assets/cockpit/background.jpg" id="3_t0ykn"]
+[ext_resource type="Texture2D" uid="uid://dirs3ltja70jq" path="res://assets/basic_boat.png" id="5_t0ykn"]
 
 [sub_resource type="Theme" id="Theme_g6rob"]
 default_font_size = 72
 
-[sub_resource type="LabelSettings" id="LabelSettings_nt2lr"]
-font_size = 72
-
 [sub_resource type="Theme" id="Theme_ddqq8"]
 default_font_size = 72
-
-[sub_resource type="LabelSettings" id="LabelSettings_ad8ya"]
-font_size = 72
 
 [sub_resource type="Theme" id="Theme_03rmu"]
 default_font_size = 72
@@ -51,88 +25,117 @@ default_font_size = 72
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_5f806")
+theme = ExtResource("1_r26j7")
 script = ExtResource("1_5f806")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=684634921]
+[node name="Background" type="ColorRect" parent="." unique_id=795015170]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -636.0
+offset_top = -481.0
+offset_right = 951.0
+offset_bottom = 580.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=928102986]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_4tr0r")
+texture = ExtResource("3_t0ykn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1284620183]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1284620183]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -40.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusLabel" type="Label" parent="VBoxContainer" unique_id=459156630]
 layout_mode = 2
 
-[node name="StatusLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=459156630]
-layout_mode = 2
-theme = SubResource("Theme_8hduq")
-label_settings = SubResource("LabelSettings_g6rob")
-
-[node name="Name" type="LineEdit" parent="PanelContainer/VBoxContainer" unique_id=1915278816]
+[node name="Name" type="LineEdit" parent="VBoxContainer" unique_id=1915278816]
 layout_mode = 2
 theme = SubResource("Theme_g6rob")
 text = "Vinte"
 
-[node name="HBoxContainerIP" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=554722213]
+[node name="HBoxContainerIP" type="HBoxContainer" parent="VBoxContainer" unique_id=554722213]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainerIP" unique_id=11675700]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainerIP" unique_id=11675700]
 layout_mode = 2
 text = "Ip:"
-label_settings = SubResource("LabelSettings_nt2lr")
 
-[node name="IpLineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainerIP" unique_id=311261085]
+[node name="IpLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainerIP" unique_id=311261085]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme = SubResource("Theme_ddqq8")
 text = "192.168.1.143"
 emoji_menu_enabled = false
 
-[node name="HBoxContainerPorta" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1125632579]
+[node name="HBoxContainerPorta" type="HBoxContainer" parent="VBoxContainer" unique_id=1125632579]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainerPorta" unique_id=1356556547]
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainerPorta" unique_id=1356556547]
 layout_mode = 2
 text = "Port:"
-label_settings = SubResource("LabelSettings_ad8ya")
 
-[node name="PortLineEdit" type="LineEdit" parent="PanelContainer/VBoxContainer/HBoxContainerPorta" unique_id=40646318]
+[node name="PortLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainerPorta" unique_id=40646318]
 layout_mode = 2
 theme = SubResource("Theme_03rmu")
+text = "4242"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=717651986]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=717651986]
 layout_mode = 2
 
-[node name="ConnectButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=802563028]
+[node name="ConnectButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=802563028]
 layout_mode = 2
 theme = SubResource("Theme_b3wi1")
 text = "Connect"
 
-[node name="DisconnectButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1906354397]
+[node name="DisconnectButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1906354397]
 layout_mode = 2
 theme = SubResource("Theme_1ssov")
 text = "Disconnect"
 
-[node name="ExitButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=484890156]
+[node name="ExitButton" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=484890156]
 layout_mode = 2
 theme = ExtResource("2_1t5vp")
 text = "Quit"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="PanelContainer/VBoxContainer" unique_id=904321773]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer" unique_id=904321773]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
-[node name="PlayerCharacterOptionButton" type="OptionButton" parent="PanelContainer/VBoxContainer" unique_id=548275500]
+[node name="PlayerCharacterOptionButton" type="OptionButton" parent="VBoxContainer" unique_id=548275500]
 visible = false
 layout_mode = 2
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="color_changed" from="PanelContainer/VBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="item_selected" from="PanelContainer/VBoxContainer/PlayerCharacterOptionButton" to="." method="_on_player_character_option_button_item_selected"]
+[node name="BoatPreview" type="Sprite2D" parent="." unique_id=1163236943]
+position = Vector2(181.8858, 766.9161)
+rotation = -1.5707964
+scale = Vector2(0.7342658, 1.0210905)
+texture = ExtResource("5_t0ykn")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="color_changed" from="VBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="item_selected" from="VBoxContainer/PlayerCharacterOptionButton" to="." method="_on_player_character_option_button_item_selected"]
