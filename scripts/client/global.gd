@@ -269,13 +269,8 @@ func set_core_enabled(enabled: bool):
 		get_node("/root/Game").set_core_enabled_button(enabled)
 
 @rpc("any_peer", "call_remote", "reliable")
-func perform_dash(direction: Vector2, force: float):
+func cannonball_powerup(direction: Vector2, force: float):
 	pass
-
-@rpc("any_peer", "call_remote", "reliable")
-func spike_powerup():
-	pass
-
 
 func apply_stored_state():
 	if has_node("/root/Game"):

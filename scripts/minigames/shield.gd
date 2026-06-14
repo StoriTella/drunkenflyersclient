@@ -73,4 +73,5 @@ func _on_ball_pressed(ball: Button):
 func _on_timer_timeout():
 	if is_complete:
 		return
-	Minigames.lose_minigame_sound()
+	SoundEffects.lose_minigame_sound()
+	Minigames.complete_minigame()

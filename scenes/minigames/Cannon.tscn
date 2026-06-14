@@ -1,34 +1,51 @@
 [gd_scene format=3 uid="uid://3x8dq3m1dcnq"]
 
 [ext_resource type="Script" uid="uid://buvrvuefsxq5u" path="res://scripts/minigames/cannon.gd" id="1_ukgkm"]
+[ext_resource type="Theme" uid="uid://cn7xgpeml4avt" path="res://assets/themes/minigame_theme.tres" id="1_x2jk5"]
+[ext_resource type="Texture2D" uid="uid://digglfwcx3a0m" path="res://assets/cockpit/background.jpg" id="2_7o7om"]
+[ext_resource type="Texture2D" uid="uid://b1lwyx76gvaci" path="res://assets/minigames/cannonballsprite.png" id="4_kokt1"]
 
-[sub_resource type="Theme" id="Theme_ukgkm"]
-default_font_size = 200
+[sub_resource type="CircleShape2D" id="CircleShape2D_kokt1"]
+radius = 141.50972
 
-[node name="Spike" type="Control" unique_id=296717952]
+[node name="Cannonball" type="Control" unique_id=296717952]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_x2jk5")
 script = ExtResource("1_ukgkm")
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="." unique_id=1522089895]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_7o7om")
 
 [node name="Timer" type="Timer" parent="." unique_id=1446313536]
 wait_time = 5.0
+autostart = true
 
-[node name="Line2D" type="Line2D" parent="." unique_id=308534042]
+[node name="CannonBall" type="Area2D" parent="." unique_id=1985493152]
+position = Vector2(909, 556)
 
-[node name="StatusLabel" type="Label" parent="." unique_id=1249588986]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-theme = SubResource("Theme_ukgkm")
-text = "Circles: 0/5"
+[node name="CanonBallSprite" type="Sprite2D" parent="CannonBall" unique_id=1240745895]
+position = Vector2(3.0517578e-05, -1.5258789e-05)
+scale = Vector2(0.7774798, 0.7909605)
+texture = ExtResource("4_kokt1")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="CannonBall" unique_id=623746075]
+position = Vector2(45, 57)
+rect = Rect2(-194, -200, 295, 283)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CannonBall" unique_id=1494942239]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_kokt1")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="screen_exited" from="CannonBall/VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

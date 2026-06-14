@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://br31kximebnl8"
-valid=false
+uid="uid://b1lwyx76gvaci"
+path="res://.godot/imported/cannonballsprite.png-6c0d3a6c394e5f9854605d3887d735b5.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://assets/minigames/cannonball.png"
+source_file="res://assets/minigames/cannonballsprite.png"
+dest_files=["res://.godot/imported/cannonballsprite.png-6c0d3a6c394e5f9854605d3887d735b5.ctex"]
 
 [params]
 

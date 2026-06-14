@@ -1,105 +1,69 @@
 extends Control
 
-@export var required_slices_per_circle: int = 8
-@export var required_circles: int = 2
-@export var radius: float = 150.0
+@onready var ball: Area2D = $CannonBall
+@onready var ball_collision: CollisionShape2D = $CannonBall/CollisionShape2D
 
-var circles_completed: int = 0
-var current_slices_drawn: int = 0
-var current_drawn_angles: Array = []
-var is_drawing: bool = false
-var center: Vector2 = Vector2.ZERO
-var circle_completing: bool = false
-
-@onready var line: Line2D = $Line2D
-@onready var status_label: Label = $StatusLabel
-@onready var timer: Timer = $Timer
+var dragging = false
+var drag_start = Vector2()
+var last_pos = Vector2()
+var velocity = Vector2()
+var sensitivity = 8.0
 var is_complete: bool = false
+var ball_radius = 32
 
 func _ready():
-	Global.is_in_minigame = true
-	line.width = 5
-	line.default_color = Color.WHITE
-	update_status_label()
-	timer.start()
+	if ball.has_node("CollisionShape2D"):
+		var shape = ball.get_node("CollisionShape2D").shape
+		if shape is CircleShape2D:
+			ball_radius = shape.radius
+
+func _process(delta):
+	if not dragging and velocity.length() > 0:
+		ball.position += velocity * delta
+		if abs(velocity.x) < 0.5 and abs(velocity.y) < 0.5:
+			velocity = Vector2.ZERO
 
 func _input(event):
-	if event is InputEventScreenTouch or event is InputEventMouseButton:
-		if event.pressed:
-			start_draw(event.position)
-		else:
-			if is_drawing:
-				end_draw()
-	
-	if (event is InputEventScreenDrag or event is InputEventMouseMotion) and is_drawing:
-		update_draw(event.position)
+	if dragging:
+		if event is InputEventMouseMotion:
+			ball.position = get_global_mouse_position()
+			last_pos = get_global_mouse_position()
+		elif event is InputEventScreenDrag:
+			ball.position = event.position
+			last_pos = event.position
 
-func start_draw(pos: Vector2):
-	center = pos
-	current_slices_drawn = 0
-	current_drawn_angles.clear()
-	line.clear_points()
-	is_drawing = true
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		calculate_velocity(event)
 
-func update_draw(pos: Vector2):
-	var direction = pos - center
-	var angle = rad_to_deg(atan2(direction.y, direction.x))
-	var slice_index = int((angle + 180) / (360.0 / required_slices_per_circle))
-	
-	if not current_drawn_angles.has(slice_index) and current_slices_drawn < required_slices_per_circle:
-		current_drawn_angles.append(slice_index)
-		current_slices_drawn += 1
-		
-		var slice_angle = slice_index * (360.0 / required_slices_per_circle) - 180
-		var rad = deg_to_rad(slice_angle)
-		var end_point = center + Vector2(cos(rad), sin(rad)) * radius
-		
-		line.add_point(center)
-		line.add_point(end_point)
-		
-		if current_slices_drawn >= required_slices_per_circle and not circle_completing:
-			complete_circle()
+	if event is InputEventScreenTouch:
+		calculate_velocity(event)
 
-func complete_circle():
-	if circle_completing:
-		return
-	circle_completing = true
-	
-	circles_completed += 1
-	update_status_label()
-	
-	if circles_completed >= required_circles:
-		Global.rpc("spike_powerup")
-		is_complete = true
-		SoundEffects.spike_minigame_finnish_sound()
-		Minigames.complete_minigame()
-	else:
-		show_circle_complete()
-		await get_tree().create_timer(0.2).timeout
-		line.clear_points()
-		current_slices_drawn = 0
-		current_drawn_angles.clear()
-		is_drawing = false
-		
-	circle_completing = false
+func calculate_velocity(event): 
+		if event.pressed and not dragging:
+			var touch_pos = event.position
+			if touch_pos.distance_to(ball.position) <= ball_radius:
+				dragging = true
+				drag_start = touch_pos
+				last_pos = drag_start
+				velocity = Vector2.ZERO
+		elif not event.pressed and dragging:
+			dragging = false
+			var release_pos = event.position
+			var delta = release_pos - drag_start
+			velocity = delta * sensitivity
 
-func show_circle_complete():
-	var label = Label.new()
-	label.text = "Circle " + str(circles_completed) + "/" + str(required_circles) + "!"
-	label.position = center - Vector2(50, 50)
-	add_child(label)
-	await get_tree().create_timer(1.0).timeout
-	label.queue_free()
-
-func update_status_label():
-	if status_label:
-		status_label.text = "Circles: " + str(circles_completed) + "/" + str(required_circles)
-
-func end_draw():
-	is_drawing = false
 
 func _on_timer_timeout() -> void:
 	if is_complete:
 		return
 	SoundEffects.lose_minigame_sound()
+	Minigames.complete_minigame()
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	var speed = velocity.length()
+	is_complete = true
+	var final_force = velocity.length()
+	var swipe_direction = velocity.normalized()
+	Global.rpc("cannonball_powerup", swipe_direction, final_force)
 	Minigames.complete_minigame()
