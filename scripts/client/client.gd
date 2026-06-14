@@ -169,6 +169,7 @@ func load_saved_config():
 	background.color = player_color
 	boat_preview.modulate = player_color
 	boat_label.modulate = player_color
+	boat_label.text = name_label.text
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
@@ -183,3 +184,7 @@ func _on_color_picker_button_color_changed(color: Color) -> void:
 
 func _on_player_character_option_button_item_selected(index: int) -> void:
 	player_character_type = index
+
+
+func _on_name_text_changed(new_text: String) -> void:
+	boat_label.text = new_text

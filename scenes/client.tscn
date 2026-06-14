@@ -152,6 +152,7 @@ grow_vertical = 0
 text = "John Doe"
 label_settings = SubResource("LabelSettings_dipmf")
 
+[connection signal="text_changed" from="VBoxContainer/Name" to="." method="_on_name_text_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
