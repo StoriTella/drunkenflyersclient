@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://bbsb0mwr08726" path="res://assets/themes/ButtonThemes.tres" id="2_1t5vp"]
 [ext_resource type="Texture2D" uid="uid://digglfwcx3a0m" path="res://assets/cockpit/background.jpg" id="3_t0ykn"]
 [ext_resource type="Texture2D" uid="uid://dirs3ltja70jq" path="res://assets/basic_boat.png" id="5_t0ykn"]
+[ext_resource type="FontFile" uid="uid://c1in8m8dlijv3" path="res://assets/fonts/oh-whale-font/OhWhale-oYZq.ttf" id="6_da3od"]
 
 [sub_resource type="Theme" id="Theme_g6rob"]
 default_font_size = 72
@@ -20,6 +21,10 @@ default_font_size = 72
 
 [sub_resource type="Theme" id="Theme_1ssov"]
 default_font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_dipmf"]
+font = ExtResource("6_da3od")
+font_size = 32
 
 [node name="ClientRoot" type="Panel" unique_id=723361514]
 anchors_preset = 15
@@ -129,10 +134,23 @@ visible = false
 layout_mode = 2
 
 [node name="BoatPreview" type="Sprite2D" parent="." unique_id=1163236943]
-position = Vector2(181.8858, 766.9161)
+position = Vector2(179.33803, 837.66547)
 rotation = -1.5707964
-scale = Vector2(0.7342658, 1.0210905)
+scale = Vector2(0.7416605, 0.9577097)
 texture = ExtResource("5_t0ykn")
+
+[node name="BoatLabel" type="Label" parent="." unique_id=2039499410]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_top = -251.0
+offset_right = 243.0
+offset_bottom = -170.0
+grow_vertical = 0
+text = "John Doe"
+label_settings = SubResource("LabelSettings_dipmf")
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]

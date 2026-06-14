@@ -14,6 +14,7 @@ var server_port = "4242"
 @onready var player_character_button: OptionButton = $VBoxContainer/PlayerCharacterOptionButton
 @onready var background: ColorRect = $Background
 @onready var boat_preview: Sprite2D = $BoatPreview
+@onready var boat_label: Label = $BoatLabel
 
 var player_color: Color
 var player_character_type: int = 0
@@ -167,6 +168,7 @@ func load_saved_config():
 	player_character_button.select(player_character_type)
 	background.color = player_color
 	boat_preview.modulate = player_color
+	boat_label.modulate = player_color
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
@@ -176,6 +178,7 @@ func _on_color_picker_button_color_changed(color: Color) -> void:
 	player_color = color
 	background.color = color
 	boat_preview.modulate = color
+	boat_label.modulate = color
 
 
 func _on_player_character_option_button_item_selected(index: int) -> void:
