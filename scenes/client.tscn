@@ -107,6 +107,14 @@ layout_mode = 2
 theme = SubResource("Theme_03rmu")
 text = "4242"
 
+[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer" unique_id=904321773]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="PlayerCharacterOptionButton" type="OptionButton" parent="VBoxContainer" unique_id=548275500]
+visible = false
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=717651986]
 layout_mode = 2
 
@@ -125,14 +133,6 @@ layout_mode = 2
 theme = ExtResource("2_1t5vp")
 text = "Quit"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer" unique_id=904321773]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-
-[node name="PlayerCharacterOptionButton" type="OptionButton" parent="VBoxContainer" unique_id=548275500]
-visible = false
-layout_mode = 2
-
 [node name="BoatPreview" type="Sprite2D" parent="." unique_id=1163236943]
 position = Vector2(179.33803, 837.66547)
 rotation = -1.5707964
@@ -144,17 +144,18 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 120.0
+offset_left = 11.0
 offset_top = -251.0
-offset_right = 243.0
+offset_right = 358.0
 offset_bottom = -170.0
 grow_vertical = 0
 text = "John Doe"
 label_settings = SubResource("LabelSettings_dipmf")
+horizontal_alignment = 1
 
 [connection signal="text_changed" from="VBoxContainer/Name" to="." method="_on_name_text_changed"]
+[connection signal="color_changed" from="VBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
+[connection signal="item_selected" from="VBoxContainer/PlayerCharacterOptionButton" to="." method="_on_player_character_option_button_item_selected"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/DisconnectButton" to="." method="_on_disconnect_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="color_changed" from="VBoxContainer/ColorPickerButton" to="." method="_on_color_picker_button_color_changed"]
-[connection signal="item_selected" from="VBoxContainer/PlayerCharacterOptionButton" to="." method="_on_player_character_option_button_item_selected"]

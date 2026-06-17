@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://c7ijkgkgfhfwm" path="res://assets/themes/directional_pad_theme.tres" id="3_p57ef"]
 [ext_resource type="Texture2D" uid="uid://d3imq83sr688g" path="res://assets/cockpit/directionalPad.png" id="4_u5sy4"]
 [ext_resource type="Theme" uid="uid://dxo4x15i7sbwp" path="res://assets/themes/cockpit_theme.tres" id="5_iywne"]
+[ext_resource type="SpriteFrames" uid="uid://c2mqe7ukh5rqs" path="res://assets/spriteframes/fire_sprite_frames.tres" id="5_p57ef"]
 
 [node name="Game" type="Control" unique_id=1867825606]
 custom_minimum_size = Vector2(1820, 980)
@@ -74,6 +75,13 @@ grow_horizontal = 2
 disabled = true
 text = "Up"
 
+[node name="FireAnimatedSprite2D" type="AnimatedSprite2D" parent="LeftPanel/UpButton" unique_id=1894838564]
+visible = false
+position = Vector2(167, 105)
+scale = Vector2(3.2446043, 2.0872743)
+sprite_frames = ExtResource("5_p57ef")
+autoplay = "default"
+
 [node name="DownButton" type="Button" parent="LeftPanel" unique_id=315603036]
 layout_mode = 1
 anchors_preset = 7
@@ -89,6 +97,13 @@ grow_vertical = 0
 disabled = true
 text = "Down"
 
+[node name="FireAnimatedSprite2D" type="AnimatedSprite2D" parent="LeftPanel/DownButton" unique_id=488073615]
+visible = false
+position = Vector2(152.00002, 113.00003)
+scale = Vector2(3.2446043, 2.0872743)
+sprite_frames = ExtResource("5_p57ef")
+autoplay = "default"
+
 [node name="LeftButton" type="Button" parent="LeftPanel" unique_id=1778444702]
 layout_mode = 1
 anchors_preset = 4
@@ -100,6 +115,13 @@ offset_bottom = 150.0
 grow_vertical = 2
 disabled = true
 text = "Left"
+
+[node name="FireAnimatedSprite2D" type="AnimatedSprite2D" parent="LeftPanel/LeftButton" unique_id=371662709]
+visible = false
+position = Vector2(170, 109)
+scale = Vector2(3.2446043, 2.0872743)
+sprite_frames = ExtResource("5_p57ef")
+autoplay = "default"
 
 [node name="RightButton" type="Button" parent="LeftPanel" unique_id=647054652]
 layout_mode = 1
@@ -116,6 +138,13 @@ grow_vertical = 2
 disabled = true
 text = "Right"
 
+[node name="FireAnimatedSprite2D" type="AnimatedSprite2D" parent="LeftPanel/RightButton" unique_id=66284745]
+visible = false
+position = Vector2(160.00002, 100.00003)
+scale = Vector2(3.2446043, 2.0872743)
+sprite_frames = ExtResource("5_p57ef")
+autoplay = "default"
+
 [node name="CoreButton" type="Button" parent="LeftPanel" unique_id=1546187311]
 layout_mode = 1
 anchors_preset = 8
@@ -131,6 +160,13 @@ grow_horizontal = 2
 grow_vertical = 2
 disabled = true
 text = "Core"
+
+[node name="FireAnimatedSprite2D" type="AnimatedSprite2D" parent="LeftPanel/CoreButton" unique_id=486162198]
+visible = false
+position = Vector2(156.00002, 100.50003)
+scale = Vector2(3.2446043, 2.0872743)
+sprite_frames = ExtResource("5_p57ef")
+autoplay = "default"
 
 [node name="RightPanel" type="Control" parent="." unique_id=960138206]
 custom_minimum_size = Vector2(860, 515)

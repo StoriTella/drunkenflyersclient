@@ -13,6 +13,7 @@ config_version=5
 config/name="DrunkenFlyersClient"
 run/main_scene="uid://cfyu3kpjs52lo"
 config/features=PackedStringArray("4.6", "Mobile")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,6 +23,7 @@ SoundEffects="*uid://csaynxqli7b5c"
 Minigames="*uid://c4136b4ylhgl2"
 Configs="*uid://ciyw5ffucvpdq"
 PowerupTimers="*uid://mpxuas0iplfj"
+CoreMiniGame="*uid://b0wcm2dx0lwvj"
 
 [display]
 

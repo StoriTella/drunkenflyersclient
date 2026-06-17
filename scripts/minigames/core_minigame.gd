@@ -1,7 +1,8 @@
 extends Control
 
-@export var min_ball_count: int = 15
-@export var max_ball_count: int = 20
+@export var direction_disabled_type: String = "core"
+@export var min_ball_count: int = 5
+@export var max_ball_count: int = 10
 @export var ball_size: int = 200
 @export var ball_speed: int = 300
 
@@ -17,7 +18,18 @@ var screen_size: Vector2
 var is_complete: bool = false
 
 func _ready():
+	define_params()
 	start_minigame()
+
+func define_params():
+	direction_disabled_type = CoreMiniGame.direction_disabled_type
+	match direction_disabled_type:
+		"core":
+			min_ball_count = CoreMiniGame.core_disabled_type_minigame_min
+			max_ball_count = CoreMiniGame.core_disabled_type_minigame_max
+		_:
+			min_ball_count = CoreMiniGame.direction_disabled_type_minigame_min
+			max_ball_count = CoreMiniGame.direction_disabled_type_minigame_max
 
 func start_minigame():
 	Minigames.is_in_minigame(true)
@@ -73,7 +85,20 @@ func _on_ball_pressed(ball: Button):
 			is_complete = true
 			SoundEffects.stop_core_fire_sound()
 			Minigames.complete_minigame()
+			repair_systems()
+
+func repair_systems():
+	match direction_disabled_type:
+		"core":
 			Global.rpc("repair_systems_core")
+		"up":
+			Global.rpc("repair_systems_up")
+		"down":
+			Global.rpc("repair_systems_down")
+		"left":
+			Global.rpc("repair_systems_left")
+		"right":
+			Global.rpc("repair_systems_right")
 
 func _process(delta):
 	for ball in ball_list:

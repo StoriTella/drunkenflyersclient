@@ -2,11 +2,16 @@ extends Control
 
 @onready var disconnect_button = $PanelContainer/HBoxContainer/Disconnect
 
-@onready var up_button = $LeftPanel/UpButton
-@onready var down_button = $LeftPanel/DownButton
-@onready var left_button = $LeftPanel/LeftButton
-@onready var right_button = $LeftPanel/RightButton
-@onready var core_button = $LeftPanel/CoreButton
+@onready var up_button: Button = $LeftPanel/UpButton
+@onready var up_button_animation: AnimatedSprite2D = $LeftPanel/UpButton/FireAnimatedSprite2D
+@onready var down_button: Button = $LeftPanel/DownButton
+@onready var down_button_animation: AnimatedSprite2D = $LeftPanel/DownButton/FireAnimatedSprite2D
+@onready var left_button: Button = $LeftPanel/LeftButton
+@onready var left_button_animation: AnimatedSprite2D = $LeftPanel/LeftButton/FireAnimatedSprite2D
+@onready var right_button: Button = $LeftPanel/RightButton
+@onready var right_button_animation: AnimatedSprite2D = $LeftPanel/RightButton/FireAnimatedSprite2D
+@onready var core_button: Button = $LeftPanel/CoreButton
+@onready var core_button_animation: AnimatedSprite2D = $LeftPanel/CoreButton/FireAnimatedSprite2D
 
 @onready var shield_button = $RightPanel/VBoxContainer/ShieldButton
 @onready var speed_button = $RightPanel/VBoxContainer/SpeedButton
@@ -20,6 +25,7 @@ func _ready():
 	background.color = Global.player_color
 
 func _on_disconnect_pressed() -> void:
+	SoundEffects.stop_core_fire_sound()
 	Global.reset_stored_state()
 	Global.disconnect_from_server()
 	get_tree().change_scene_to_file("res://scenes/client.tscn")
@@ -53,30 +59,40 @@ func set_spike_button_enabled(enabled: bool):
 #Controls:
 func set_left_enabled_button(enabled: bool):
 	left_button.disabled = enabled
+	left_button_animation.visible = !enabled
 
 func set_right_enabled_button(enabled: bool):
 	right_button.disabled = enabled
+	right_button_animation.visible = !enabled
 
 func set_up_enabled_button(enabled: bool):
 	up_button.disabled = enabled
+	up_button_animation.visible = !enabled
 
 func set_down_enabled_button(enabled: bool):
 	down_button.disabled = enabled
+	down_button_animation.visible = !enabled
 
 func set_core_enabled_button(enabled: bool):
 	core_button.disabled = enabled
+	core_button_animation.visible = !enabled
 
 func _on_up_button_pressed() -> void:
-	Global.rpc("repair_systems_up")
+	CoreMiniGame.direction_disabled_type = "up"
+	get_tree().change_scene_to_file("res://scenes/minigames/CoreMinigame.tscn")
 	
 func _on_down_button_pressed() -> void:
-	Global.rpc("repair_systems_down")
+	CoreMiniGame.direction_disabled_type = "down"
+	get_tree().change_scene_to_file("res://scenes/minigames/CoreMinigame.tscn")
 
 func _on_left_button_pressed() -> void:
-	Global.rpc("repair_systems_left")
+	CoreMiniGame.direction_disabled_type = "left"
+	get_tree().change_scene_to_file("res://scenes/minigames/CoreMinigame.tscn")
 
 func _on_right_button_pressed() -> void:
-	Global.rpc("repair_systems_right")
+	CoreMiniGame.direction_disabled_type = "right"
+	get_tree().change_scene_to_file("res://scenes/minigames/CoreMinigame.tscn")
 
 func _on_core_button_pressed() -> void:
+	CoreMiniGame.direction_disabled_type = "core"
 	get_tree().change_scene_to_file("res://scenes/minigames/CoreMinigame.tscn")
