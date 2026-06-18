@@ -126,6 +126,14 @@ func vibrate_player(duration_ms: int):
 	Input.vibrate_handheld(duration_ms)
 
 #Sounds
+@rpc("any_peer", "call_remote", "reliable")
+func win_round_sound():
+	SoundEffects.win_round_sound()
+
+@rpc("any_peer", "call_remote", "reliable")
+func lose_round_sound():
+	SoundEffects.lose_round_sound()
+
 @rpc("any_peer","call_remote", "reliable")
 func normal_coin_sound():
 	var now = Time.get_ticks_msec()

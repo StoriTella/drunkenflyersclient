@@ -37,6 +37,12 @@ func burp_sound():
 func water_sound():
 	play_random_sound(preload("res://assets/minigames/water_bucket.mp3"))
 
+func win_round_sound():
+	play_random_sound(preload("res://assets/round/win_round.mp3"))
+
+func lose_round_sound():
+	play_random_sound(preload("res://assets/round/lose_round.mp3"))
+
 func start_core_fire_sound():
 	if !core_fire_sound:
 		core_fire_sound = AudioStreamPlayer.new()
