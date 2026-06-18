@@ -21,11 +21,12 @@ func _on_timer_timeout():
 	SoundEffects.lose_minigame_sound()
 	Minigames.complete_minigame()
 
-
 func _on_button_pressed() -> void:
 	if (max_banana > banana_sprite.frame):
+		SoundEffects.banana_sound()
 		banana_sprite.frame = banana_sprite.frame+1
 	else:
-			is_complete = true
-			Global.rpc("add_banana_powerup")
-			Minigames.complete_minigame()
+		SoundEffects.finish_banana_sound()
+		is_complete = true
+		Global.rpc("add_banana_powerup")
+		Minigames.complete_minigame()

@@ -72,6 +72,12 @@ func stop_iman_sound():
 	if iman_sound and iman_sound.playing:
 		iman_sound.stop()
 
+func banana_sound():
+	play_random_sound(preload("res://assets/minigames/banana.mp3"))
+
+func finish_banana_sound():
+	play_random_sound(preload("res://assets/minigames/burp.mp3"))
+
 func play_random_sound(sound: AudioStream):
 	var player = AudioStreamPlayer2D.new()
 	
