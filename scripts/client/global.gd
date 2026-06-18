@@ -179,6 +179,14 @@ func hit_by_banana_sound():
 	SoundEffects.play_random_sound(preload("res://assets/powerups_sounds/banana.mp3"))
 
 @rpc("any_peer", "call_remote", "reliable")
+func hit_by_iman_sound():
+	SoundEffects.start_iman_sound()
+
+@rpc("any_peer", "call_remote", "reliable")
+func remove_hit_by_iman_sound():
+	SoundEffects.stop_iman_sound()
+
+@rpc("any_peer", "call_remote", "reliable")
 func core_disabled_sound():
 	SoundEffects.start_core_fire_sound()
 
@@ -204,11 +212,15 @@ func add_shield_powerup():
 	pass
 
 @rpc("any_peer", "call_remote", "reliable")
-func nuclear_missile_powerup():
+func add_banana_powerup():
 	pass
 
 @rpc("any_peer", "call_remote", "reliable")
-func add_banana_powerup():
+func add_iman_powerup():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func nuclear_missile_powerup():
 	pass
 
 #system movement and core

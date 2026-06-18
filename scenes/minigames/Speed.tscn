@@ -8,7 +8,7 @@
 [sub_resource type="Theme" id="Theme_emng5"]
 default_font_size = 200
 
-[node name="Agitate" type="Control" unique_id=2016081158]
+[node name="Speed" type="Control" unique_id=2016081158]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

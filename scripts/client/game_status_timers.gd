@@ -4,16 +4,19 @@ var shield_timer: Timer
 var speed_timer: Timer
 var spike_timer: Timer
 var banana_timer: Timer
+var iman_timer: Timer
 
 var shield_enabled: bool = false
 var speed_enabled: bool = false
 var spike_enabled: bool = false
 var banana_enabled: bool = false
+var iman_enabled: bool = false
 
 @export var shield_duration: float = 60.0
 @export var speed_duration: float = 30.0
 @export var spike_duration: float = 3.0
 @export var banana_duration: float = 10.0
+@export var iman_duration: float = 60.0
 
 func _ready():
 	setup_timers()
@@ -38,6 +41,11 @@ func setup_timers():
 	banana_timer.one_shot = true
 	banana_timer.timeout.connect(_on_banana_timeout)
 	add_child(banana_timer)
+	
+	iman_timer = Timer.new()
+	iman_timer.one_shot = true
+	iman_timer.timeout.connect(_on_iman_timeout)
+	add_child(iman_timer)
 
 func start_shield():
 	shield_enabled = true
@@ -59,6 +67,11 @@ func start_banana():
 	banana_timer.start(banana_duration)
 	update_button_state("banana", false)
 
+func start_iman():
+	iman_enabled = true
+	iman_timer.start(iman_duration)
+	update_button_state("iman", false)
+
 func update_button_state(powerup: String, enabled: bool):
 	if has_node("/root/Game"):
 		var game = get_node("/root/Game")
@@ -71,6 +84,8 @@ func update_button_state(powerup: String, enabled: bool):
 				game.set_spike_button_enabled(enabled)
 			"banana":
 				game.set_banana_button_enabled(enabled)
+			"iman":
+				game.set_iman_button_enabled(enabled)
 
 func _on_shield_timeout():
 	shield_enabled = false
@@ -88,6 +103,10 @@ func _on_banana_timeout():
 	banana_enabled = false
 	update_button_state("banana", true)
 
+func _on_iman_timeout():
+	iman_enabled = false
+	update_button_state("iman", true)
+
 func apply_stored_state():
 	if has_node("/root/Game"):
 		var game = get_node("/root/Game")
@@ -95,3 +114,4 @@ func apply_stored_state():
 		game.set_speed_button_enabled(not speed_enabled)
 		game.set_spike_button_enabled(not spike_enabled)
 		game.set_banana_button_enabled(not banana_enabled)
+		game.set_iman_button_enabled(not iman_enabled)

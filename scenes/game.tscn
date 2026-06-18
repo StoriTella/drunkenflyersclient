@@ -187,14 +187,15 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -330.0
-offset_top = -126.0
+offset_left = -176.0
+offset_top = -102.0
 offset_right = 3.0
 offset_bottom = -45.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
+theme_override_font_sizes/font_size = 36
 text = "Disconnect"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel" unique_id=1640251393]
@@ -203,9 +204,9 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -333.0
-offset_top = 85.0
-offset_bottom = -204.0
+offset_left = -423.0
+offset_top = 1.0
+offset_bottom = -179.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -225,6 +226,10 @@ text = "Cannon"
 layout_mode = 2
 text = "Banana"
 
+[node name="ImanButton" type="Button" parent="RightPanel/VBoxContainer" unique_id=717154495]
+layout_mode = 2
+text = "Iman"
+
 [connection signal="pressed" from="LeftPanel/UpButton" to="." method="_on_up_button_pressed"]
 [connection signal="pressed" from="LeftPanel/DownButton" to="." method="_on_down_button_pressed"]
 [connection signal="pressed" from="LeftPanel/LeftButton" to="." method="_on_left_button_pressed"]
@@ -235,3 +240,4 @@ text = "Banana"
 [connection signal="pressed" from="RightPanel/VBoxContainer/SpeedButton" to="." method="_on_speed_button_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/SpikeButton" to="." method="_on_spike_button_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/BananaButton" to="." method="_on_banana_button_pressed"]
+[connection signal="pressed" from="RightPanel/VBoxContainer/ImanButton" to="." method="_on_iman_button_pressed"]

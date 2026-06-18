@@ -17,6 +17,7 @@ extends Control
 @onready var speed_button = $RightPanel/VBoxContainer/SpeedButton
 @onready var spike_button = $RightPanel/VBoxContainer/SpikeButton
 @onready var banana_button = $RightPanel/VBoxContainer/BananaButton
+@onready var iman_button = $RightPanel/VBoxContainer/ImanButton
 
 @onready var background: ColorRect = $Background
 
@@ -27,6 +28,7 @@ func _ready():
 
 func _on_disconnect_pressed() -> void:
 	SoundEffects.stop_core_fire_sound()
+	SoundEffects.stop_iman_sound()
 	Global.reset_stored_state()
 	Global.disconnect_from_server()
 	get_tree().change_scene_to_file("res://scenes/client.tscn")
@@ -53,6 +55,12 @@ func _on_banana_button_pressed() -> void:
 	PowerupTimers.start_banana()
 	get_tree().change_scene_to_file("res://scenes/minigames/Banana.tscn")
 
+func _on_iman_button_pressed() -> void:
+	iman_button.disabled = true
+	PowerupTimers.start_iman()
+	get_tree().change_scene_to_file("res://scenes/minigames/Iman.tscn")
+
+
 func set_shield_button_enabled(enabled: bool):
 	shield_button.disabled = not enabled
 
@@ -64,6 +72,9 @@ func set_spike_button_enabled(enabled: bool):
 
 func set_banana_button_enabled(enabled: bool):
 	banana_button.disabled = not enabled
+
+func set_iman_button_enabled(enabled: bool):
+	iman_button.disabled = not enabled
 
 #Controls:
 func set_left_enabled_button(enabled: bool):
