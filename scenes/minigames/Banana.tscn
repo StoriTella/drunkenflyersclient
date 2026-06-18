@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://0kj4eim8wxdp"]
+
+[ext_resource type="Theme" uid="uid://cn7xgpeml4avt" path="res://assets/themes/minigame_theme.tres" id="1_rb77h"]
+[ext_resource type="Script" uid="uid://lgsbcrdsbsh8" path="res://scripts/minigames/banana.gd" id="2_om7gd"]
+[ext_resource type="Texture2D" uid="uid://8qitr22knxbn" path="res://assets/minigames/shield_background.jpg" id="3_xmoae"]
+[ext_resource type="SpriteFrames" uid="uid://b2auuh7omnf10" path="res://assets/spriteframes/banana_sprite_frames.tres" id="4_xmoae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_klpdb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifnd1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_om7gd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmoae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oybx0"]
+
+[sub_resource type="Theme" id="Theme_klpdb"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_klpdb")
+Button/styles/focus = SubResource("StyleBoxEmpty_ifnd1")
+Button/styles/hover = SubResource("StyleBoxEmpty_om7gd")
+Button/styles/normal = SubResource("StyleBoxEmpty_xmoae")
+Button/styles/pressed = SubResource("StyleBoxEmpty_oybx0")
+
+[node name="Banana" type="Control" unique_id=1653149477]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_rb77h")
+script = ExtResource("2_om7gd")
+
+[node name="Timer" type="Timer" parent="." unique_id=711869509]
+wait_time = 10.0
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1537522045]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_xmoae")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=442717069]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 222.0
+grow_horizontal = 2
+text = "Eat the Banana"
+horizontal_alignment = 1
+
+[node name="BananaAnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1313353218]
+position = Vector2(918.99994, 575.99994)
+scale = Vector2(10, 10)
+sprite_frames = ExtResource("4_xmoae")
+animation = &"eating banana"
+frame_progress = 0.89298165
+
+[node name="Button" type="Button" parent="BananaAnimatedSprite2D" unique_id=1034238175]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.799988
+offset_top = -65.7
+offset_right = 5.7000046
+offset_bottom = 5.100006
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_klpdb")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="BananaAnimatedSprite2D/Button" to="." method="_on_button_pressed"]

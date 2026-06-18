@@ -1,0 +1,51 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b2auuh7omnf10"]
+
+[ext_resource type="Texture2D" uid="uid://cm5y3h23xhmpl" path="res://assets/banana/banana1.png" id="1_s4vsg"]
+[ext_resource type="Texture2D" uid="uid://8bsgqairk2bo" path="res://assets/banana/banana2.png" id="2_0gdqa"]
+[ext_resource type="Texture2D" uid="uid://dntyvlp724hei" path="res://assets/banana/banana3.png" id="3_q4jve"]
+[ext_resource type="Texture2D" uid="uid://dyrdjrcvjcfdx" path="res://assets/banana/banana4.png" id="4_h6inr"]
+[ext_resource type="Texture2D" uid="uid://dit1vfbqobcma" path="res://assets/banana/banana5.png" id="5_dtp75"]
+[ext_resource type="Texture2D" uid="uid://chlusotnitlt6" path="res://assets/banana/banana6.png" id="6_bgr8l"]
+[ext_resource type="Texture2D" uid="uid://cysta60vvhs8b" path="res://assets/banana/banana7.png" id="7_blvlm"]
+[ext_resource type="Texture2D" uid="uid://c2tywjl3s80jb" path="res://assets/banana/banana8.png" id="8_mjxl3"]
+[ext_resource type="Texture2D" uid="uid://bng4osa4e21a1" path="res://assets/banana/caca_banana.png" id="9_thl56"]
+
+[resource]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s4vsg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0gdqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q4jve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h6inr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dtp75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bgr8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_blvlm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mjxl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_thl56")
+}],
+"loop": true,
+"name": &"eating banana",
+"speed": 5.0
+}]

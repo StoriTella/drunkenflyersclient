@@ -175,6 +175,10 @@ func hit_by_spike_sound():
 	SoundEffects.play_random_sound(preload("res://assets/damage_sounds/hit_by_spike_sound.mp3"))
 
 @rpc("any_peer", "call_remote", "reliable")
+func hit_by_banana_sound():
+	SoundEffects.play_random_sound(preload("res://assets/powerups_sounds/banana.mp3"))
+
+@rpc("any_peer", "call_remote", "reliable")
 func core_disabled_sound():
 	SoundEffects.start_core_fire_sound()
 
@@ -203,7 +207,9 @@ func add_shield_powerup():
 func nuclear_missile_powerup():
 	pass
 
-
+@rpc("any_peer", "call_remote", "reliable")
+func add_banana_powerup():
+	pass
 
 #system movement and core
 @rpc("any_peer", "call_remote", "reliable")

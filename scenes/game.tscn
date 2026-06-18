@@ -221,6 +221,10 @@ text = "Speed"
 layout_mode = 2
 text = "Cannon"
 
+[node name="BananaButton" type="Button" parent="RightPanel/VBoxContainer" unique_id=1504641445]
+layout_mode = 2
+text = "Banana"
+
 [connection signal="pressed" from="LeftPanel/UpButton" to="." method="_on_up_button_pressed"]
 [connection signal="pressed" from="LeftPanel/DownButton" to="." method="_on_down_button_pressed"]
 [connection signal="pressed" from="LeftPanel/LeftButton" to="." method="_on_left_button_pressed"]
@@ -230,3 +234,4 @@ text = "Cannon"
 [connection signal="pressed" from="RightPanel/VBoxContainer/ShieldButton" to="." method="_on_shield_button_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/SpeedButton" to="." method="_on_speed_button_pressed"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/SpikeButton" to="." method="_on_spike_button_pressed"]
+[connection signal="pressed" from="RightPanel/VBoxContainer/BananaButton" to="." method="_on_banana_button_pressed"]

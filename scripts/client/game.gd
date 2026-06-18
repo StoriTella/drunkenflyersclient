@@ -16,6 +16,7 @@ extends Control
 @onready var shield_button = $RightPanel/VBoxContainer/ShieldButton
 @onready var speed_button = $RightPanel/VBoxContainer/SpeedButton
 @onready var spike_button = $RightPanel/VBoxContainer/SpikeButton
+@onready var banana_button = $RightPanel/VBoxContainer/BananaButton
 
 @onready var background: ColorRect = $Background
 
@@ -47,6 +48,11 @@ func _on_spike_button_pressed() -> void:
 	PowerupTimers.start_spike()
 	get_tree().change_scene_to_file("res://scenes/minigames/Cannon.tscn")
 
+func _on_banana_button_pressed() -> void:
+	banana_button.disabled = true
+	PowerupTimers.start_banana()
+	get_tree().change_scene_to_file("res://scenes/minigames/Banana.tscn")
+
 func set_shield_button_enabled(enabled: bool):
 	shield_button.disabled = not enabled
 
@@ -55,6 +61,9 @@ func set_speed_button_enabled(enabled: bool):
 
 func set_spike_button_enabled(enabled: bool):
 	spike_button.disabled = not enabled
+
+func set_banana_button_enabled(enabled: bool):
+	banana_button.disabled = not enabled
 
 #Controls:
 func set_left_enabled_button(enabled: bool):
