@@ -1,19 +1,12 @@
 extends Node
 
 enum CharacterType {
-	WARRIOR,
-	MAGE,
-	ARCHER,
-	PRIEST,
-	DRUID,
-	NANI,
-	VIBE,
-	INVENTOR,
-	BARBARIAN,
-	GUNSLINGUER,
-	WARLOCK,
-	BARD,
-	ARTIFICER
+	BOIA1,
+	BOIA2,
+	PEIXE,
+	SUBMARINO,
+	CERVEJA,
+	BALDE,
 }
 
 var server_ip = "192.168.1.143"

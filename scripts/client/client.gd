@@ -16,6 +16,8 @@ var server_port = "4242"
 @onready var boat_preview: Sprite2D = $BoatPreview
 @onready var boat_label: Label = $BoatLabel
 
+@export var sprite_size: int = 128
+
 var player_color: Color
 var player_character_type: int = 0
 
@@ -39,19 +41,12 @@ func _ready():
 	port_line_edit.editable = true
 
 func setup_character_list():
-	player_character_button.add_item("Warrior", Global.CharacterType.WARRIOR)
-	player_character_button.add_item("Mage", Global.CharacterType.MAGE)
-	player_character_button.add_item("Archer", Global.CharacterType.ARCHER)
-	player_character_button.add_item("Priest", Global.CharacterType.PRIEST)
-	player_character_button.add_item("Druid", Global.CharacterType.DRUID)
-	player_character_button.add_item("Nani", Global.CharacterType.NANI)
-	player_character_button.add_item("Vibe", Global.CharacterType.VIBE)
-	player_character_button.add_item("Inventor", Global.CharacterType.INVENTOR)
-	player_character_button.add_item("Barbarian", Global.CharacterType.BARBARIAN)
-	player_character_button.add_item("Gunslinger", Global.CharacterType.GUNSLINGUER)
-	player_character_button.add_item("Warlock", Global.CharacterType.WARLOCK)
-	player_character_button.add_item("Bard", Global.CharacterType.BARD)
-	player_character_button.add_item("Artificer", Global.CharacterType.ARTIFICER)
+	player_character_button.add_item("BOIA1", Global.CharacterType.BOIA1)
+	player_character_button.add_item("BOIA2", Global.CharacterType.BOIA2)
+	player_character_button.add_item("PEIXE", Global.CharacterType.PEIXE)
+	player_character_button.add_item("SUBMARINO", Global.CharacterType.SUBMARINO)
+	player_character_button.add_item("CERVEJA", Global.CharacterType.CERVEJA)
+	player_character_button.add_item("BALDE", Global.CharacterType.BALDE)
 
 func _on_disconnect_button_pressed():
 		disconnect_from_server()
@@ -166,6 +161,7 @@ func load_saved_config():
 	player_color = config["color"]
 	player_character_type = config["player_character_type"]
 	player_character_button.select(player_character_type)
+	set_sprite(player_character_type)
 	background.color = player_color
 	boat_preview.modulate = player_color
 	boat_label.modulate = player_color
@@ -183,7 +179,30 @@ func _on_color_picker_button_color_changed(color: Color) -> void:
 
 
 func _on_player_character_option_button_item_selected(index: int) -> void:
+	set_sprite(index)
+
+func set_sprite(index):
 	player_character_type = index
+	
+	match player_character_type:
+		Global.CharacterType.BOIA1:
+			boat_preview.texture = preload("res://assets/player_characters/BOIA1.png")
+		Global.CharacterType.BOIA2:
+			boat_preview.texture = preload("res://assets/player_characters/BOIA2.png")
+		Global.CharacterType.PEIXE:
+			boat_preview.texture = preload("res://assets/player_characters/PEIXE.png")
+		Global.CharacterType.SUBMARINO:
+			boat_preview.texture = preload("res://assets/player_characters/SUBMARINO.png")
+		Global.CharacterType.CERVEJA:
+			boat_preview.texture = preload("res://assets/player_characters/CERVEJA.png")
+		Global.CharacterType.BALDE:
+			boat_preview.texture = preload("res://assets/player_characters/BALDE.png")
+			
+	var target_size = Vector2(sprite_size, sprite_size)
+	var texture_size = boat_preview.texture.get_size()
+	var scale_x = target_size.x / texture_size.x
+	var scale_y = target_size.y / texture_size.y
+	boat_preview.scale = Vector2(scale_x, scale_y)
 
 
 func _on_name_text_changed(new_text: String) -> void:
