@@ -190,6 +190,14 @@ func remove_hit_by_iman_sound():
 func core_disabled_sound():
 	SoundEffects.start_core_fire_sound()
 
+@rpc("any_peer", "call_remote", "reliable")
+func flag_collect_sound():
+	SoundEffects.flag_collect_sound()
+
+@rpc("any_peer", "call_remote", "reliable")
+func flag_steal_sound():
+	SoundEffects.flag_steal_sound()
+
 #Setup server
 @rpc("any_peer","call_remote", "reliable")
 func set_player_name(player_name: String):

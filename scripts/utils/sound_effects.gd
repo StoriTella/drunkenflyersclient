@@ -78,6 +78,12 @@ func banana_sound():
 func finish_banana_sound():
 	play_random_sound(preload("res://assets/minigames/burp.mp3"))
 
+func flag_collect_sound():
+	play_random_sound(preload("res://assets/points/collect.mp3"))
+
+func flag_steal_sound():
+	play_random_sound(preload("res://assets/points/steal.mp3"))
+
 func play_random_sound(sound: AudioStream):
 	var player = AudioStreamPlayer2D.new()
 	
