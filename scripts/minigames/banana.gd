@@ -5,6 +5,7 @@ extends Control
 @onready var score_label = $ScoreLabel
 @onready var banana_sprite : AnimatedSprite2D = $BananaAnimatedSprite2D
 var max_banana = 7
+var is_banana_set = false
 
 var is_complete: bool = false
 
@@ -25,7 +26,8 @@ func _on_button_pressed() -> void:
 	if (max_banana > banana_sprite.frame):
 		SoundEffects.banana_sound()
 		banana_sprite.frame = banana_sprite.frame+1
-	else:
+	elif !is_banana_set:
+		is_banana_set = true
 		SoundEffects.finish_banana_sound()
 		is_complete = true
 		Global.rpc("add_banana_powerup")
