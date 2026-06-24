@@ -25,9 +25,16 @@ var player_name: String = "John Doe"
 var player_color: Color = Color.GREEN
 var player_character: int
 
+@export var send_frequency_hz: float = 10.0
+var frame_counter: int = 0
+var send_interval_frames: int = 6
+
 #Sound
 @export var sound_cooldown_ms: int = 500
 var last_sound_time: int = 0
+
+func _ready():
+	send_interval_frames = max(1, int(60.0 / send_frequency_hz))
 
 func _on_disconnect_button_pressed():
 		disconnect_from_server()
@@ -84,10 +91,13 @@ func _physics_process(delta):
 	if is_in_minigame:
 		return
 	
-	var gyro = Input.get_gyroscope()
-	var gravity = Input.get_gravity()
-	rpc("update_gyro", gyro)
-	rpc("update_gravity", gravity)
+	frame_counter += 1
+	if frame_counter >= send_interval_frames:
+		frame_counter = 0
+		var gyro = Input.get_gyroscope()
+		var gravity = Input.get_gravity()
+		#rpc("update_gyro", gyro)
+		rpc("update_gravity", gravity)
 
 func set_player_name_client(new_player_name: String):
 	player_name = new_player_name
